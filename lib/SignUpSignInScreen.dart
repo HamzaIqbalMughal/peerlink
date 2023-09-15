@@ -29,25 +29,29 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
         children: [
           Container(
             height: MediaQuery.of(context).size.height * 0.4,
-            padding: EdgeInsets.only(bottom: 50, top: 50),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                // backgroundBlendMode: linear-gradient(142.03deg, #DEE06A 15.05%, rgba(144, 106, 224, 0) 93.68%),
-                // background: linear-gradient(142.03deg, #DEE06A 15.05%, rgba(144, 106, 224, 0) 93.68%),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(120),
-                    bottomRight: Radius.circular(120)),
-                gradient: LinearGradient(
-                  begin: Alignment.bottomRight,
-                  end: Alignment.topLeft,
-                  colors: [
-                    Color(0xFFDEE06A), // Use the color code provided
-                    Color.fromRGBO(
-                        144, 106, 224, 0), // Use the color code provided
-                  ],
-                  stops: [0.1505, 0.9368],
-                  transform: GradientRotation(142.03),
-                )),
+            padding: EdgeInsets.only(bottom: 90, top: 20),
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/background1.png'),
+                fit: BoxFit.cover,
+              ),
+              // color: Colors.white,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(150),
+                bottomRight: Radius.circular(150),
+              ),
+              gradient: LinearGradient(
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+                colors: [
+                  Color(0xFFDEE06A), // Use the color code provided
+                  Color.fromRGBO(
+                      144, 106, 224, 0), // Use the color code provided
+                ],
+                stops: [0.1505, 0.9368],
+                transform: GradientRotation(142.03),
+              ),
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -61,10 +65,12 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
               ],
             ),
           ),
-          if (isLogIn)
-            logInCard(themeColor)
-          else
-            signUpCard(themeColor) // convert this into ternary operator
+
+          isLogIn ? logInCard(themeColor) : signUpCard(themeColor)
+          // if (isLogIn)
+          //   logInCard(themeColor)
+          // else
+          //   signUpCard(themeColor) // convert this into ternary operator
         ],
       ),
     );
