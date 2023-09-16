@@ -16,9 +16,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Itim'),
-      home: SignUpSignInScreen(),
+      // home: SignUpSignInScreen(),
       // home: TempScreen(),
-      // home: WelcomeScreen(),
+      home: WelcomeScreen(),
     );
   }
 }
