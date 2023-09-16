@@ -28,11 +28,16 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
     Fluttertoast.showToast(msg: "SignUp Button Clicked!");
   }
 
+  void forgetPasswordPressed() {
+    Fluttertoast.showToast(msg: "Forget Password is Clicked!");
+  }
+
   @override
   Widget build(BuildContext context) {
     Color themeColor =
         Color(int.parse(themeColorCodeHexa.replaceAll('#', '0x')));
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       body: Stack(
         alignment: Alignment.center,
@@ -410,13 +415,18 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
           const SizedBox(
             height: 40,
           ),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text(
-                'Forget Password?',
-                style: TextStyle(
-                  fontSize: 12,
+              GestureDetector(
+                onTap: () {
+                  forgetPasswordPressed();
+                },
+                child: Text(
+                  'Forget Password?',
+                  style: TextStyle(
+                    fontSize: 12,
+                  ),
                 ),
               ),
             ],

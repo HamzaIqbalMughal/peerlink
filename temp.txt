@@ -1,7 +1,8 @@
 todo:
-1. solve the logo issue then push the code  // done
+1. solve issue of textfield hiding when keyboard is open.
 2. implement forms/ checks that all fields are filled properly // 
+3. apply shadow on just bottom on login/signup cards.
 
 
 Queries: 
- i have a logo and a Welcom text, logo should be at exact centre of whole screen, and beneath it there should be welcom text
+ i have a logo and a Welcom text, logo should be at exact centre of whole screen, and beneath it there should be welcome text
