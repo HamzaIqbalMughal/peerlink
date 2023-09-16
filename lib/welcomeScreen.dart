@@ -4,8 +4,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 class WelcomeScreen extends StatelessWidget {
   WelcomeScreen({super.key});
 
+  String themeColorCodeHexa = "#fff1a443";
+
   @override
   Widget build(BuildContext context) {
+    Color themeColor =
+        Color(int.parse(themeColorCodeHexa.replaceAll('#', '0x')));
     return Scaffold(
       // appBar: AppBar(
       //   backgroundColor: Colors.red,
@@ -17,28 +21,19 @@ class WelcomeScreen extends StatelessWidget {
           // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SvgPicture.asset(
-              'assets/icons/cake.svg',
-              height: 200,
-              width: 200,
+              'assets/icons/peerlink_logo.svg',
+              height: MediaQuery.of(context).size.width * 0.65,
+              width: MediaQuery.of(context).size.width * 0.65,
+              // height: 200,
+              // width: 200,
             ),
             Text(
-              'Peerlink',
+              'Welcome to PeerLink',
               style: TextStyle(
-                color: Colors.red,
+                color: themeColor,
+                fontSize: 30,
               ),
-            )
-            // Container(
-            //   // height: MediaQuery.of(context).size.width * 0.9,
-            //   // width: MediaQuery.of(context).size.width * 0.9,
-            //   decoration: BoxDecoration(
-            //     color: Colors.amber.withOpacity(0.2),
-            //   ),
-            //   child: SvgPicture.asset(
-            //     'assets/icons/logo.svg',
-            //     height: 200,
-            //     width: 200,
-            //   ),
-            // ),
+            ),
           ],
         ),
       ),

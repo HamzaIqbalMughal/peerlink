@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:peerlink/SignUpSignInScreen.dart';
+import 'package:peerlink/temp.dart';
 import 'package:peerlink/welcomeScreen.dart';
 
 void main() {
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Itim'),
       home: SignUpSignInScreen(),
+      // home: TempScreen(),
       // home: WelcomeScreen(),
     );
   }

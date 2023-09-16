@@ -8,14 +8,24 @@ class SignUpSignInScreen extends StatefulWidget {
 }
 
 class _SignUpSignInScreen extends State<SignUpSignInScreen> {
-  String themeColorCodeHexa = "#ffefa541";
+  String themeColorCodeHexa = "#fff1a443";
 
-  bool isLogIn = false;
+  bool isLogIn = true;
 
   void toggleBetweenSignInAndSignUp() {
     setState(() {
       isLogIn = !isLogIn;
     });
+  }
+
+  void btnLogInPressed() {
+    // Implement LogIn Functionality here
+    Fluttertoast.showToast(msg: "LogIn Button Clicked!");
+  }
+
+  void btnSignUpPressed() {
+    // Implement SignUp Functionality here
+    Fluttertoast.showToast(msg: "SignUp Button Clicked!");
   }
 
   @override
@@ -24,53 +34,65 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
         Color(int.parse(themeColorCodeHexa.replaceAll('#', '0x')));
     return Scaffold(
       backgroundColor: Colors.white,
-      body: ListView(
-        // crossAxisAlignment: CrossAxisAlignment.center,
+      body: Stack(
+        alignment: Alignment.center,
         children: [
-          Container(
-            height: MediaQuery.of(context).size.height * 0.4,
-            padding: EdgeInsets.only(bottom: 90, top: 20),
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/background1.png'),
-                fit: BoxFit.cover,
+          Positioned(
+            top: 0,
+            child: Container(
+              // height: 350,
+              height: MediaQuery.of(context).size.height * 0.45,
+              width: MediaQuery.of(context).size.width * 1,
+              padding: const EdgeInsets.only(bottom: 120, top: 45),
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/background1.png'),
+                  fit: BoxFit.fill,
+                ),
+                borderRadius: BorderRadius.only(
+                  // bottomLeft: Radius.elliptical(200, 160),
+                  // bottomRight: Radius.elliptical(200, 160),
+                  bottomLeft: Radius.circular(165),
+                  bottomRight: Radius.circular(165),
+                ),
+                gradient: LinearGradient(
+                  begin: Alignment.bottomRight,
+                  end: Alignment.topLeft,
+                  colors: [
+                    Color(0xFFDEE06A), // Use the color code provided
+                    Color.fromRGBO(
+                        144, 106, 224, 0), // Use the color code provided
+                  ],
+                  stops: [0.1505, 0.9368],
+                  transform: GradientRotation(142.03),
+                ),
               ),
-              // color: Colors.white,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(150),
-                bottomRight: Radius.circular(150),
-              ),
-              gradient: LinearGradient(
-                begin: Alignment.bottomRight,
-                end: Alignment.topLeft,
-                colors: [
-                  Color(0xFFDEE06A), // Use the color code provided
-                  Color.fromRGBO(
-                      144, 106, 224, 0), // Use the color code provided
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.all(8),
+                    child: SvgPicture.asset(
+                      'assets/icons/peerlink_logo.svg',
+                      height: MediaQuery.of(context).size.height * 0.14,
+                    ),
+                  ),
+                  const Text(
+                    'PeerLink',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 32,
+                    ),
+                  )
                 ],
-                stops: [0.1505, 0.9368],
-                transform: GradientRotation(142.03),
               ),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                    height: MediaQuery.of(context).size.height * 0.2,
-                    child: SvgPicture.asset('assets/icons/cake.svg')),
-                Text(
-                  'Peerlink',
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 32),
-                )
-              ],
             ),
           ),
-
-          isLogIn ? logInCard(themeColor) : signUpCard(themeColor)
-          // if (isLogIn)
-          //   logInCard(themeColor)
-          // else
-          //   signUpCard(themeColor) // convert this into ternary operator
+          Positioned(
+              top: 250,
+              child: isLogIn ? logInCard(themeColor) : signUpCard(themeColor)),
+          // isLogIn ? logInCard(themeColor) : signUpCard(themeColor)
         ],
       ),
     );
@@ -78,12 +100,14 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
 
   Container signUpCard(Color themeColor) {
     return Container(
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         left: 40,
         right: 40,
       ),
       height: 450,
-      margin: EdgeInsets.only(left: 32, right: 32),
+      width: MediaQuery.of(context).size.width * 0.82,
+      // width: 300,
+      margin: const EdgeInsets.only(left: 30, right: 30),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(25),
@@ -95,16 +119,12 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
             // offset: Offset(0, 3),
           ),
         ],
-        // border: Border.all(
-        //   color: Colors.black,
-        //   width: 1,
-        // ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
           Container(
@@ -155,7 +175,7 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                       decoration: BoxDecoration(
                           color: themeColor,
                           borderRadius: BorderRadius.circular(30)),
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           'Sign Up',
                           style: TextStyle(
@@ -171,7 +191,7 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
             ),
           ),
 // -------------------------------------------------------
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
           Container(
@@ -185,7 +205,7 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                       color: Colors.black.withOpacity(0.3), fontSize: 12)),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Container(
@@ -199,7 +219,7 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                       color: Colors.black.withOpacity(0.3), fontSize: 12)),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Container(
@@ -213,40 +233,48 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                       color: Colors.black.withOpacity(0.3), fontSize: 12)),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 54,
           ),
-          Container(
-            height: 35,
-            decoration: BoxDecoration(
-                color: themeColor, borderRadius: BorderRadius.circular(25)),
-            child: Center(
-              child: Text(
-                'Sign Up',
-                style: TextStyle(color: Colors.white, fontSize: 17),
+          GestureDetector(
+            onTap: () {
+              btnSignUpPressed();
+            },
+            child: Container(
+              height: 35,
+              decoration: BoxDecoration(
+                  color: themeColor, borderRadius: BorderRadius.circular(25)),
+              child: const Center(
+                child: Text(
+                  'Sign Up',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 17,
+                  ),
+                ),
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  "Already have an Account?",
+                const Text(
+                  "Already have an Account? ",
                   style: TextStyle(color: Colors.black, fontSize: 12),
                 ),
                 GestureDetector(
                   onTap: () {
                     toggleBetweenSignInAndSignUp();
                   },
-                  child: Text(
+                  child: const Text(
                     'Log In',
                     style: TextStyle(
                       color: Colors.blue,
-                      fontSize: 12,
+                      fontSize: 14,
                     ),
                   ),
                 )
@@ -260,12 +288,13 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
 
   Container logInCard(Color themeColor) {
     return Container(
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         left: 40,
         right: 40,
       ),
       height: 450,
-      margin: EdgeInsets.only(left: 32, right: 32),
+      width: MediaQuery.of(context).size.width * 0.82,
+      margin: const EdgeInsets.symmetric(horizontal: 24),
       // padding: EdgeInsets.only(left: 20, right: 20),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -283,7 +312,7 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
           Container(
@@ -310,7 +339,7 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                       decoration: BoxDecoration(
                           color: themeColor,
                           borderRadius: BorderRadius.circular(30)),
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           'Log In',
                           style: TextStyle(
@@ -350,7 +379,7 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
             ),
           ),
 // -------------------------------------------------------
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
           Container(
@@ -364,7 +393,7 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                       color: Colors.black.withOpacity(0.3), fontSize: 12)),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Container(
@@ -378,10 +407,10 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                       color: Colors.black.withOpacity(0.3), fontSize: 12)),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
@@ -392,40 +421,45 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
-          Container(
-            height: 35,
-            decoration: BoxDecoration(
-                color: themeColor, borderRadius: BorderRadius.circular(25)),
-            child: Center(
-              child: Text(
-                'Log In',
-                style: TextStyle(color: Colors.white, fontSize: 17),
+          GestureDetector(
+            onTap: () {
+              btnLogInPressed();
+            },
+            child: Container(
+              height: 35,
+              decoration: BoxDecoration(
+                  color: themeColor, borderRadius: BorderRadius.circular(25)),
+              child: const Center(
+                child: Text(
+                  'Log In',
+                  style: TextStyle(color: Colors.white, fontSize: 17),
+                ),
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  "Don't have an account?",
+                const Text(
+                  "Don't have an account? ",
                   style: TextStyle(color: Colors.black, fontSize: 12),
                 ),
                 GestureDetector(
                   onTap: () {
                     toggleBetweenSignInAndSignUp();
                   },
-                  child: Text(
+                  child: const Text(
                     'Sign Up',
                     style: TextStyle(
                       color: Colors.blue,
-                      fontSize: 12,
+                      fontSize: 14,
                     ),
                   ),
                 )
