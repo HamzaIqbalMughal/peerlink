@@ -252,6 +252,7 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                     decoration: InputDecoration(
                       // filled: true,
                       // fillColor: Colors.red,
+                      // prefixIcon: Icon(Icons.person),
                       errorStyle: TextStyle(
                         fontSize: 10,
                       ),
@@ -584,6 +585,7 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                         child: const Text(
                           'Forget Password?',
                           style: TextStyle(
+                            color: Colors.blue,
                             fontSize: 12,
                           ),
                         ),
