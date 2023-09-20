@@ -155,10 +155,10 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
         borderRadius: BorderRadius.circular(25),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 1,
-            blurRadius: 1,
-            // offset: Offset(0, 3),
+            color: Colors.grey.withOpacity(0.6),
+            spreadRadius: 0.5,
+            blurRadius: 2,
+            offset: Offset(0, 5),
           ),
         ],
       ),
@@ -422,10 +422,10 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
         borderRadius: BorderRadius.circular(25),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 1,
-            blurRadius: 1,
-            // offset: Offset(0, 3),
+            color: Colors.grey.withOpacity(0.6),
+            spreadRadius: 0.5,
+            blurRadius: 2,
+            offset: Offset(0, 5),
           ),
         ],
       ),
