@@ -252,7 +252,11 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                     decoration: InputDecoration(
                       // filled: true,
                       // fillColor: Colors.red,
-                      // prefixIcon: Icon(Icons.person),
+                      prefixIcon: Icon(Icons.person),
+                      prefixIconConstraints: const BoxConstraints(
+                        // minHeight: 0,
+                        maxHeight: 8,
+                      ),
                       errorStyle: TextStyle(
                         fontSize: 10,
                       ),
@@ -284,6 +288,13 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                     decoration: InputDecoration(
                       // filled: true,
                       // fillColor: Colors.red,
+                      prefixIcon: Icon(
+                        Icons.password_sharp,
+                      ),
+                      prefixIconConstraints: const BoxConstraints(
+                        // minHeight: 0,
+                        maxHeight: 8,
+                      ),
                       errorStyle: TextStyle(
                         fontSize: 10,
                       ),
@@ -315,6 +326,13 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                     decoration: InputDecoration(
                       // filled: true,
                       // fillColor: Colors.red,
+                      prefixIcon: Icon(
+                        Icons.password_sharp,
+                      ),
+                      prefixIconConstraints: const BoxConstraints(
+                        // minHeight: 0,
+                        maxHeight: 8,
+                      ),
                       errorStyle: TextStyle(
                         fontSize: 10,
                       ),
@@ -515,6 +533,11 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                     decoration: InputDecoration(
                       // filled: true,
                       // fillColor: Colors.red,
+                      prefixIcon: Icon(Icons.person),
+                      prefixIconConstraints: const BoxConstraints(
+                        // minHeight: 0,
+                        maxHeight: 8,
+                      ),
                       errorStyle: TextStyle(
                         fontSize: 10,
                       ),
@@ -546,6 +569,13 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                     decoration: InputDecoration(
                       // filled: true,
                       // fillColor: Colors.red,
+                      prefixIcon: Icon(
+                        Icons.password_sharp,
+                      ),
+                      prefixIconConstraints: const BoxConstraints(
+                        // minHeight: 0,
+                        maxHeight: 8,
+                      ),
                       errorStyle: TextStyle(
                         fontSize: 10,
                       ),

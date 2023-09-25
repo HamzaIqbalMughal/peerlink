@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:peerlink/SignUpSignInScreen.dart';
 import 'package:peerlink/Stack-with-Scroll-practice.dart';
-import 'package:peerlink/welcomeScreen.dart';
+import 'package:peerlink/WelcomeScreen.dart';
+import 'package:peerlink/homeScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,8 +17,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Itim'),
-      // home: SignUpSignInScreen(),
-      home: WelcomeScreen(),
+      // home: WelcomeScreen(),
+      // home: homeScreen(),
+      home: HomeScreen(),
     );
   }
 }
