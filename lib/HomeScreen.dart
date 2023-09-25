@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:badges/badges.dart' as badges;
+// import 'package:badges/badges.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // Color appbarColor =
     //     Color(int.parse(appbarColorCodeHexa.replaceAll("#", "0x")));
 
-    Color appbarColor = Color.fromRGBO(239, 165, 65, 0.4);
+    Color appbarColor = Color.fromRGBO(239, 165, 65, 0.5);
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -72,14 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Text('option 3'),
                 ),
               ],
-            )
-            // Padding(
-            //   padding: const EdgeInsets.only(right: 8, left: 3),
-            //   child: Icon(
-            //     Icons.more_vert,
-            //     color: themeColor2,
-            //   ),
-            // ),
+            ),
           ],
 
           bottom: TabBar(
@@ -104,10 +99,44 @@ class _HomeScreenState extends State<HomeScreen> {
 
           // backgroundColor: Color(0xEFA54180),
         ),
-        body: TabBarView(children: [
-          Center(child: Text('Chat')),
-          Center(child: Text('Groups')),
-        ]),
+        body: TabBarView(
+          children: [
+            ListView.builder(
+              itemCount: 50,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+                  ),
+                  title: Text('Hamza'),
+                  subtitle: Text('kaha ho tum?'),
+                  // trailing: Text('1:22pm'),
+                  trailing: badges.Badge(
+                    badgeStyle: badges.BadgeStyle(
+                      badgeColor: themeColor1,
+                    ),
+                    badgeContent: Text(
+                      '2',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  // dense: true,
+                  onTap: () {},
+                );
+              },
+            ),
+            ListView.builder(
+              itemCount: 100,
+              itemBuilder: (context, index) {
+                return Text('Messages');
+              },
+            ),
+            // Center(child: Text('Groups')),
+          ],
+        ),
       ),
     );
   }
