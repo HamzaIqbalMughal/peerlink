@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:badges/badges.dart';
 
@@ -16,6 +17,9 @@ class _HomeScreenState extends State<HomeScreen> {
   String themeColor2CodeHexa = "#ff2e4757";
   String appbarColorCodeHexa = "#fff7d2a0";
 
+
+  bool isChatTab = true;
+
   @override
   Widget build(BuildContext context) {
     Color themeColor1 =
@@ -25,21 +29,29 @@ class _HomeScreenState extends State<HomeScreen> {
     Color appbarColor =
         Color(int.parse(appbarColorCodeHexa.replaceAll("#", "0x")));
 
-    // Color appbarColor = Color.fromRGBO(239, 165, 65, 0.4).withOpacity(0.5);
+    Icon iconForFloatingButton = Icon(Icons.chat_rounded, color: themeColor2,size: 40,);
+
+    void toggleFloatingButton(){
+      setState(() {
+        isChatTab = !isChatTab;
+      });
+    }
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           backgroundColor: appbarColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Icon(
-            Icons.chat_rounded,
-            color: themeColor2,
-            size: 40,
-          ),
-          onPressed: () {},
+          child: isChatTab ?
+          Icon(Icons.chat_rounded,color: themeColor2,size: 40,) : Icon(Icons.groups,color: themeColor2,size: 40,),
+          // child: Icon(
+          //   Icons.chat_rounded,
+          //   color: themeColor2,
+          //   size: 40,
+          // ),
+          onPressed: () {
+
+          },
         ),
         appBar: AppBar(
           centerTitle: false,
@@ -58,8 +70,6 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.all(8),
               child: SvgPicture.asset(
                 'assets/icons/peerlink_logo.svg',
-                // height: 30,
-                // width: 30,
               ),
             ),
           ),
@@ -100,7 +110,19 @@ class _HomeScreenState extends State<HomeScreen> {
             indicatorColor: themeColor1,
             indicatorWeight: 2,
             unselectedLabelColor: themeColor2,
-            tabs: [
+            onTap: (index){
+              if((index == 0 && !isChatTab) || (index == 1 && isChatTab)){
+                toggleFloatingButton();
+              }
+              else if(index == 0 && isChatTab){
+                Fluttertoast.showToast(msg: 'Already on Chat Screen $isChatTab');
+              }
+              else if(index == 1 && !isChatTab){
+                Fluttertoast.showToast(msg: 'Already on Peer Groups Screen');
+              }
+              // Fluttertoast.showToast(msg: 'you tapped $index');
+            },
+            tabs: const [
               Tab(
                 text: "Chat",
               ),
@@ -131,15 +153,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         '4:30 PM',
                         style: GoogleFonts.getFont(
                           'Inter',
-                          fontSize: 10,
+                          fontSize: 8,
                           // color: Colors.red,
                         ),
-                        // style: TextStyle(
-                        //   fontSize: 10,
-                        //   fontStyle: GoogleFonts.getFont('Inter'),,
-                        //   fontFamily:
-                        //   // fontFamily: 'Roboto'
-                        // ),
                       ),
                       badges.Badge(
                         badgeStyle: badges.BadgeStyle(
@@ -162,7 +178,38 @@ class _HomeScreenState extends State<HomeScreen> {
             ListView.builder(
               itemCount: 100,
               itemBuilder: (context, index) {
-                return Text('Messages');
+                return ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage('https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+                  ),
+                  title: Text('CS Group'),
+                  subtitle: Text('Hello Everyone'),
+                  trailing: Column(
+                    children: [
+                      Text(
+                        '4:30 PM',
+                        style: GoogleFonts.getFont(
+                          'Inter',
+                          fontSize: 8,
+                        ),
+                      ),
+                      badges.Badge(
+                        badgeStyle: badges.BadgeStyle(
+                          badgeColor: themeColor1,
+                        ),
+                        badgeContent: Text(
+                          '2',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  onTap: (){
+
+                  },
+                );
               },
             ),
             // Center(child: Text('Groups')),
