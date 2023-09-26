@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:peerlink/ChatScreen.dart';
 import 'package:peerlink/SignUpSignInScreen.dart';
 import 'package:peerlink/Stack-with-Scroll-practice.dart';
 import 'package:peerlink/WelcomeScreen.dart';
@@ -20,8 +21,8 @@ class MyApp extends StatelessWidget {
 
       theme: ThemeData(fontFamily: 'Itim', useMaterial3: true),
       // home: WelcomeScreen(),
-      // home: homeScreen(),
-      home: HomeScreen(),
+      // home: HomeScreen(),
+      home: ChatScreen(),
     );
   }
 }

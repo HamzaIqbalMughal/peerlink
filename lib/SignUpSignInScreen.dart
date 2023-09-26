@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/services.dart';
+import 'package:peerlink/HomeScreen.dart';
 
 class SignUpSignInScreen extends StatefulWidget {
   @override
@@ -44,12 +45,24 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
 
   void btnLogInPressed() {
     // Implement LogIn Functionality here
-    Fluttertoast.showToast(msg: "LogIn Button Clicked!");
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context)=> HomeScreen(),
+        )
+    );
+    // Fluttertoast.showToast(msg: "LogIn Button Clicked!");
   }
 
   void btnSignUpPressed() {
     // Implement SignUp Functionality here
-    Fluttertoast.showToast(msg: "SignUp Button Clicked!");
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context)=> HomeScreen(),
+        )
+    );
+    // Fluttertoast.showToast(msg: "SignUp Button Clicked!");
   }
 
   void forgetPasswordPressed() {

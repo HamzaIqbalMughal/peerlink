@@ -29,8 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
     Color appbarColor =
         Color(int.parse(appbarColorCodeHexa.replaceAll("#", "0x")));
 
-    Icon iconForFloatingButton = Icon(Icons.chat_rounded, color: themeColor2,size: 40,);
-
     void toggleFloatingButton(){
       setState(() {
         isChatTab = !isChatTab;
@@ -44,11 +42,6 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: appbarColor,
           child: isChatTab ?
           Icon(Icons.chat_rounded,color: themeColor2,size: 40,) : Icon(Icons.groups,color: themeColor2,size: 40,),
-          // child: Icon(
-          //   Icons.chat_rounded,
-          //   color: themeColor2,
-          //   size: 40,
-          // ),
           onPressed: () {
 
           },
