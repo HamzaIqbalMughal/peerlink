@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:google_fonts/google_fonts.dart';
 // import 'package:badges/badges.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String themeColor1CodeHexa = "#fff1a443";
   String themeColor2CodeHexa = "#ff2e4757";
-  String appbarColorCodeHexa = "#EFA54180";
+  String appbarColorCodeHexa = "#fff7d2a0";
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +22,25 @@ class _HomeScreenState extends State<HomeScreen> {
         Color(int.parse(themeColor1CodeHexa.replaceAll('#', '0x')));
     Color themeColor2 =
         Color(int.parse(themeColor2CodeHexa.replaceAll('#', '0x')));
-    // Color appbarColor =
-    //     Color(int.parse(appbarColorCodeHexa.replaceAll("#", "0x")));
+    Color appbarColor =
+        Color(int.parse(appbarColorCodeHexa.replaceAll("#", "0x")));
 
-    Color appbarColor = Color.fromRGBO(239, 165, 65, 0.5);
+    // Color appbarColor = Color.fromRGBO(239, 165, 65, 0.4).withOpacity(0.5);
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: appbarColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Icon(
+            Icons.chat_rounded,
+            color: themeColor2,
+            size: 40,
+          ),
+          onPressed: () {},
+        ),
         appBar: AppBar(
           centerTitle: false,
           title: Text(
@@ -112,16 +125,34 @@ class _HomeScreenState extends State<HomeScreen> {
                   title: Text('Hamza'),
                   subtitle: Text('kaha ho tum?'),
                   // trailing: Text('1:22pm'),
-                  trailing: badges.Badge(
-                    badgeStyle: badges.BadgeStyle(
-                      badgeColor: themeColor1,
-                    ),
-                    badgeContent: Text(
-                      '2',
-                      style: TextStyle(
-                        color: Colors.white,
+                  trailing: Column(
+                    children: [
+                      Text(
+                        '4:30 PM',
+                        style: GoogleFonts.getFont(
+                          'Inter',
+                          fontSize: 10,
+                          // color: Colors.red,
+                        ),
+                        // style: TextStyle(
+                        //   fontSize: 10,
+                        //   fontStyle: GoogleFonts.getFont('Inter'),,
+                        //   fontFamily:
+                        //   // fontFamily: 'Roboto'
+                        // ),
                       ),
-                    ),
+                      badges.Badge(
+                        badgeStyle: badges.BadgeStyle(
+                          badgeColor: themeColor1,
+                        ),
+                        badgeContent: Text(
+                          '2',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   // dense: true,
                   onTap: () {},
