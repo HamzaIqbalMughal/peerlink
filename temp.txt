@@ -1,8 +1,5 @@
-todo:
-1. solve issue of textfield hiding when keyboard is open.
-2. implement forms/ checks that all fields are filled properly // 
-3. apply shadow on just bottom on login/signup cards.
-
+temp todos:
+1. explore clipPath for chat Messages,
 
 Queries: 
  i have a logo and a Welcome text, logo should be at exact centre of whole screen, and beneath it there should be welcome text
