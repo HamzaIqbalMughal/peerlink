@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:peerlink/ChatScreen.dart';
 // import 'package:badges/badges.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -164,7 +165,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   // dense: true,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context)=> ChatScreen(),
+                        )
+                    );
+                  },
                 );
               },
             ),
