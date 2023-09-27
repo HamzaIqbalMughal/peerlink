@@ -133,26 +133,25 @@ class _ChatScreenState extends State<ChatScreen> {
           //       ),
           //     )
           // );
-          return Container(
-            // margin: EdgeInsets.only(left: 5,right: 50,top: 10,bottom: 5),
-            padding: EdgeInsets.only(right: 40),
-            color: Colors.red,
-            child: Flexible(
-                child: Container(
-                  // height: double.infinity,
-                  width: double.infinity,
-                  color: themeColor1,
-                  margin: EdgeInsets.only(left: 5,right: 50,top: 10,bottom: 5),
-                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                  child: Text(
-                    'swqd a sdadasdasd',
-                    style: TextStyle(
-                      // backgroundColor: themeColor1,
-                      color: Colors.white.withOpacity(0.9),
+          return Row(
+            children: [
+              Flexible(
+                  child: Container(
+                    // height: double.infinity,
+                    // width: double.infinity,
+                    color: themeColor1,
+                    margin: EdgeInsets.only(left: 5,right: 50,top: 10,bottom: 5),
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                    child: Text(
+                      'swqd a sdad',
+                      style: TextStyle(
+                        // backgroundColor: themeColor1,
+                        color: Colors.white.withOpacity(0.9),
+                      ),
                     ),
-                  ),
-                )
-            ),
+                  )
+              ),
+            ],
           );
           // return Flexible(
           //       child: Container(
