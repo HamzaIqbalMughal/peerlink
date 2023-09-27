@@ -169,11 +169,19 @@ class _ChatScreenState extends State<ChatScreen> {
               fontSize: 20,
             ),
             suffixIcon: GestureDetector(
-              child: Icon(Icons.attachment),
+              child: Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: SvgPicture.asset('assets/icons/attachment.svg'),
+              ),
+              // child: Icon(),
               onTap: () {
                 Fluttertoast.showToast(msg: 'Attachment Clicked!');
               },
             ),
+            suffixIconConstraints: BoxConstraints(
+                // maxHeight: double.infinity,
+                // maxWidth: double.infinity,
+                ),
           ),
           style: TextStyle(
             fontSize: 20,
