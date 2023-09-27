@@ -127,14 +127,6 @@ class _ChatScreenState extends State<ChatScreen> {
       body: ListView.builder(
         itemCount: 7,
         itemBuilder: (context, index) {
-          // if (index % 3 == 0) {
-          //   return RecievedMessageTile(themeColor1);
-          //   _lastMsgIsRecieved = true;
-          // } else {
-          //   return SentMessageTile(themeColor2);
-          //   _lastMsgIsRecieved = false;
-          // }
-
           return (index % 3 == 0)
               ? SentMessageTile(themeColor2)
               : RecievedMessageTile(themeColor1);
@@ -213,9 +205,11 @@ class _ChatScreenState extends State<ChatScreen> {
         Flexible(
           child: Container(
             // margin: messageTileMargin,
+
             margin: _lastMsgIsRecieved
                 ? EdgeInsets.only(left: 80, right: 5, top: 10, bottom: 0)
                 : EdgeInsets.only(left: 80, right: 5, top: 2, bottom: 0),
+
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
