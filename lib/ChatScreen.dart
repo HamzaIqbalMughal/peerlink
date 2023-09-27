@@ -13,6 +13,7 @@ class _ChatScreenState extends State<ChatScreen> {
   String themeColor1CodeHexa = "#fff1a443";
   String themeColor2CodeHexa = "#ff2e4757";
   String appbarColorCodeHexa = "#fff7d2a0";
+  bool _lastMsgIsRecieved = false;
   @override
   Widget build(BuildContext context) {
     Color themeColor1 =
@@ -22,6 +23,8 @@ class _ChatScreenState extends State<ChatScreen> {
     Color appbarColor =
         Color(int.parse(appbarColorCodeHexa.replaceAll("#", "0x")));
 
+    print('Hello printing ...... $_lastMsgIsRecieved');
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
@@ -29,23 +32,23 @@ class _ChatScreenState extends State<ChatScreen> {
         backgroundColor: appbarColor,
 
         leading: GestureDetector(
-            onTap: () => Navigator.pop(context),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  Icons.arrow_back_ios_new_rounded,
-                  color: themeColor2,
-                ),
-                CircleAvatar(
-                  // radius: 22,
-                  backgroundImage: NetworkImage(
-                      'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
-                ),
-              ],
-            ),
+          onTap: () => Navigator.pop(context),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: themeColor2,
+              ),
+              CircleAvatar(
+                // radius: 22,
+                backgroundImage: NetworkImage(
+                    'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+              ),
+            ],
           ),
+        ),
         leadingWidth: 70,
 
         title: Text(
@@ -122,49 +125,19 @@ class _ChatScreenState extends State<ChatScreen> {
         ],
       ),
       body: ListView.builder(
+        itemCount: 7,
+        itemBuilder: (context, index) {
+          // if (index % 3 == 0) {
+          //   return RecievedMessageTile(themeColor1);
+          //   _lastMsgIsRecieved = true;
+          // } else {
+          //   return SentMessageTile(themeColor2);
+          //   _lastMsgIsRecieved = false;
+          // }
 
-        itemCount: 5,
-        itemBuilder: (context, index){
-          // return Flexible(
-          //     child: Text(
-          //       'Helloasda dasdasdaudan ',
-          //       style: TextStyle(
-          //         backgroundColor: themeColor1,
-          //       ),
-          //     )
-          // );
-          return Row(
-            children: [
-              Flexible(
-                  child: Container(
-                    // height: double.infinity,
-                    // width: double.infinity,
-                    color: themeColor1,
-                    margin: EdgeInsets.only(left: 5,right: 50,top: 10,bottom: 5),
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                    child: Text(
-                      'swqd a sdad',
-                      style: TextStyle(
-                        // backgroundColor: themeColor1,
-                        color: Colors.white.withOpacity(0.9),
-                      ),
-                    ),
-                  )
-              ),
-            ],
-          );
-          // return Flexible(
-          //       child: Container(
-          //         width: null,
-          //         margin: EdgeInsets.only(left: 5,right: 40,top: 10,bottom: 5),
-          //         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          //         decoration: BoxDecoration(
-          //           borderRadius: BorderRadius.circular(10),
-          //           color: themeColor1,
-          //         ),
-          //         child: Text('Hello there !'),
-          //       ),
-          //   );
+          return (index % 3 == 0)
+              ? SentMessageTile(themeColor2)
+              : RecievedMessageTile(themeColor1);
         },
       ),
       bottomSheet: Container(
@@ -172,15 +145,14 @@ class _ChatScreenState extends State<ChatScreen> {
         width: MediaQuery.of(context).size.width * 0.96,
         margin: EdgeInsets.only(bottom: 5),
         decoration: BoxDecoration(
-          
           color: appbarColor,
           borderRadius: BorderRadius.circular(40),
-            boxShadow: [
-              BoxShadow(
+          boxShadow: [
+            BoxShadow(
               color: Colors.grey.withOpacity(0.6),
               // spreadRadius: 0,
               blurRadius: 3,
-              offset: Offset(4,4),
+              offset: Offset(4, 4),
             )
           ],
         ),
@@ -195,7 +167,7 @@ class _ChatScreenState extends State<ChatScreen> {
             suffixIconColor: themeColor2,
             prefixIcon: GestureDetector(
               child: Icon(Icons.emoji_emotions_rounded),
-              onTap: (){
+              onTap: () {
                 Fluttertoast.showToast(msg: 'Emoji Icon Pressed');
               },
             ),
@@ -206,17 +178,100 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
             suffixIcon: GestureDetector(
               child: Icon(Icons.attachment),
-              onTap: (){
+              onTap: () {
                 Fluttertoast.showToast(msg: 'Attachment Clicked!');
               },
             ),
           ),
           style: TextStyle(
             fontSize: 20,
-            height: 0,
+            // height: 0,
           ),
         ),
       ),
+    );
+  }
+
+  Row SentMessageTile(Color themeColor2) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      print('--------------------------------------------');
+      print(" In sentTile , lastMsgIsRecieved : $_lastMsgIsRecieved");
+      _lastMsgIsRecieved = false;
+      print(" In sentTile , lastMsgIsRecieved : $_lastMsgIsRecieved");
+    });
+    // EdgeInsets messageTileMargin;
+    // if (_lastMsgIsRecieved) {
+    //   messageTileMargin =
+    //       EdgeInsets.only(left: 80, right: 5, top: 10, bottom: 0);
+    // } else {
+    //   messageTileMargin =
+    //       EdgeInsets.only(left: 80, right: 5, top: 2, bottom: 0);
+    // }
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Flexible(
+          child: Container(
+            // margin: messageTileMargin,
+            margin: _lastMsgIsRecieved
+                ? EdgeInsets.only(left: 80, right: 5, top: 10, bottom: 0)
+                : EdgeInsets.only(left: 80, right: 5, top: 2, bottom: 0),
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: themeColor2,
+            ),
+            child: Text(
+              'swqd a asdad asd a s',
+              style: TextStyle(
+                // backgroundColor: themeColor1,
+                color: Colors.white.withOpacity(0.9),
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
+  Row RecievedMessageTile(Color themeColor1) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      print('----------------------------------------------------');
+      print(" In RecieveTile , lastMsgIsRecieved : $_lastMsgIsRecieved");
+      _lastMsgIsRecieved = true;
+      print(" In RecieveTile , lastMsgIsRecieved : $_lastMsgIsRecieved");
+    });
+    // EdgeInsets messageTileMargin;
+    // if (_lastMsgIsRecieved) {
+    //   messageTileMargin =
+    //       EdgeInsets.only(left: 5, right: 80, top: 2, bottom: 0);
+    // } else {
+    //   messageTileMargin =
+    //       EdgeInsets.only(left: 5, right: 80, top: 10, bottom: 0);
+    // }
+    return Row(
+      children: [
+        Flexible(
+          child: Container(
+            // margin: messageTileMargin,
+            margin: _lastMsgIsRecieved
+                ? EdgeInsets.only(left: 5, right: 80, top: 2, bottom: 0)
+                : EdgeInsets.only(left: 5, right: 80, top: 10, bottom: 0),
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: themeColor1,
+            ),
+            child: Text(
+              'swqd a sdad asdasdsaa asdbsdsakbda dsa sda dajdald lasjdlwihaasdhasd dna sdasdaodjnas sasdasdasda',
+              style: TextStyle(
+                // backgroundColor: themeColor1,
+                color: Colors.white.withOpacity(0.9),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

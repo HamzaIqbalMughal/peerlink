@@ -16,13 +16,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
       debugShowCheckedModeBanner: false,
 
       theme: ThemeData(fontFamily: 'Itim', useMaterial3: true),
-      home: WelcomeScreen(),
+      // home: WelcomeScreen(),
       // home: HomeScreen(),
-      // home: ChatScreen(),
+      home: ChatScreen(),
     );
   }
 }
