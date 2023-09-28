@@ -131,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: TabBarView(
           children: [
             ListView.builder(
-              itemCount: 50,
+              itemCount: 25,
               itemBuilder: (context, index) {
                 return ListTile(
                   leading: CircleAvatar(
@@ -177,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             ListView.builder(
-              itemCount: 100,
+              itemCount: 25,
               itemBuilder: (context, index) {
                 return ListTile(
                   leading: CircleAvatar(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -13,7 +14,9 @@ class _ChatScreenState extends State<ChatScreen> {
   String themeColor1CodeHexa = "#fff1a443";
   String themeColor2CodeHexa = "#ff2e4757";
   String appbarColorCodeHexa = "#fff7d2a0";
-  bool _lastMsgIsRecieved = false;
+  bool _lastMsgIsRecieved = true;
+  int count=0;
+  double _topMarginofTile = 0;
   @override
   Widget build(BuildContext context) {
     Color themeColor1 =
@@ -125,69 +128,119 @@ class _ChatScreenState extends State<ChatScreen> {
         ],
       ),
       body: ListView.builder(
-        itemCount: 7,
+        itemCount: 20,
         itemBuilder: (context, index) {
-          return (index % 3 == 0)
-              ? SentMessageTile(themeColor2)
-              : RecievedMessageTile(themeColor1);
+          print('$count++');
+
+
+          
+          // if(index % 2 == 0)
+          if(index%3 == 0 || index%4 == 0)
+          {
+            if(_lastMsgIsRecieved){
+              _topMarginofTile = 10;
+            }else{
+              _topMarginofTile = 2;
+            }
+            _lastMsgIsRecieved = false;
+            return SentMessageTile(themeColor2);
+          }
+          else{
+            if(_lastMsgIsRecieved){
+              _topMarginofTile = 2;
+            }else{
+              _topMarginofTile = 10;
+            }
+            _lastMsgIsRecieved = true;
+            return RecievedMessageTile(themeColor1);
+          }
+          // return (index % 3 == 0)
+          //     ? SentMessageTile(themeColor2)
+          //     : RecievedMessageTile(themeColor1);
+          
+          // return SentMessageTile(themeColor2);
+          // return RecievedMessageTile(themeColor1);
+
         },
+
       ),
-      bottomSheet: Container(
-        // height: 50,
-        width: MediaQuery.of(context).size.width * 0.96,
-        margin: EdgeInsets.only(bottom: 5),
-        decoration: BoxDecoration(
-          color: appbarColor,
-          borderRadius: BorderRadius.circular(40),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.6),
-              // spreadRadius: 0,
-              blurRadius: 3,
-              offset: Offset(4, 4),
-            )
-          ],
-        ),
-        child: TextField(
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.all(0),
-            border: const OutlineInputBorder(
-              borderSide: BorderSide.none,
-              // borderRadius: BorderRadius.circular(30),
+      bottomSheet: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+            // height: 50,
+            width: MediaQuery.of(context).size.width * 0.8,
+            margin: EdgeInsets.only(bottom: 5),
+            decoration: BoxDecoration(
+              color: appbarColor,
+              borderRadius: BorderRadius.circular(40),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.6),
+                  // spreadRadius: 0,
+                  blurRadius: 3,
+                  offset: Offset(4, 4),
+                )
+              ],
             ),
-            prefixIconColor: themeColor2,
-            suffixIconColor: themeColor2,
-            prefixIcon: GestureDetector(
-              child: Icon(Icons.emoji_emotions_rounded),
-              onTap: () {
-                Fluttertoast.showToast(msg: 'Emoji Icon Pressed');
-              },
-            ),
-            hintText: 'Messaage',
-            hintStyle: TextStyle(
-              color: Colors.black.withOpacity(0.3),
-              fontSize: 20,
-            ),
-            suffixIcon: GestureDetector(
-              child: Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: SvgPicture.asset('assets/icons/attachment.svg'),
-              ),
-              // child: Icon(),
-              onTap: () {
-                Fluttertoast.showToast(msg: 'Attachment Clicked!');
-              },
-            ),
-            suffixIconConstraints: BoxConstraints(
-                // maxHeight: double.infinity,
-                // maxWidth: double.infinity,
+            child: TextField(
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.all(0),
+                border: const OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  // borderRadius: BorderRadius.circular(30),
                 ),
+                prefixIconColor: themeColor2,
+                suffixIconColor: themeColor2,
+                prefixIcon: GestureDetector(
+                  child: Icon(Icons.emoji_emotions_rounded),
+                  onTap: () {
+                    Fluttertoast.showToast(msg: 'Emoji Icon Pressed');
+                  },
+                ),
+                hintText: 'Messaage',
+                hintStyle: TextStyle(
+                  color: Colors.black.withOpacity(0.3),
+                  fontSize: 20,
+                ),
+                suffixIcon: GestureDetector(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: SvgPicture.asset('assets/icons/attachment.svg'),
+                  ),
+                  // child: Icon(),
+                  onTap: () {
+                    Fluttertoast.showToast(msg: 'Attachment Clicked!');
+                  },
+                ),
+                suffixIconConstraints: BoxConstraints(
+                    // maxHeight: double.infinity,
+                    // maxWidth: double.infinity,
+                    ),
+              ),
+              style: TextStyle(
+                fontSize: 20,
+                // height: 0,
+              ),
+            ),
           ),
-          style: TextStyle(
-            fontSize: 20,
-            // height: 0,
+          ElevatedButton(
+            onPressed: () {
+              Fluttertoast.showToast(msg: 'Sent Button Clicked');
+            },
+            style: ElevatedButton.styleFrom(
+              shape: CircleBorder(),
+              padding: EdgeInsets.all(10),
+              foregroundColor: themeColor1,
+              backgroundColor: appbarColor,
+            ),
+            child: Icon(
+              Icons.send,
+              color: themeColor2, // Icon color
+              size: 30, // Icon size
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -214,11 +267,13 @@ class _ChatScreenState extends State<ChatScreen> {
           child: Container(
             // margin: messageTileMargin,
 
-            margin: _lastMsgIsRecieved
-                ? EdgeInsets.only(left: 80, right: 5, top: 10, bottom: 0)
-                : EdgeInsets.only(left: 80, right: 5, top: 2, bottom: 0),
-
+            // margin: _lastMsgIsRecieved
+            //     ? EdgeInsets.only(left: 80, right: 5, top: 10, bottom: 0)
+            //     : EdgeInsets.only(left: 80, right: 5, top: 2, bottom: 0),
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+
+            margin: EdgeInsets.only(left: 80, right: 5, top: _topMarginofTile, bottom: 0),
+            
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               color: themeColor2,
@@ -256,10 +311,11 @@ class _ChatScreenState extends State<ChatScreen> {
         Flexible(
           child: Container(
             // margin: messageTileMargin,
-            margin: _lastMsgIsRecieved
-                ? EdgeInsets.only(left: 5, right: 80, top: 2, bottom: 0)
-                : EdgeInsets.only(left: 5, right: 80, top: 10, bottom: 0),
+            // margin: _lastMsgIsRecieved
+            //     ? EdgeInsets.only(left: 5, right: 80, top: 2, bottom: 0)
+            //     : EdgeInsets.only(left: 5, right: 80, top: 10, bottom: 0),
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            margin: EdgeInsets.only(left: 5, right: 80, top: _topMarginofTile, bottom: 0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               color: themeColor1,
