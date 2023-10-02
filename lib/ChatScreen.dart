@@ -127,120 +127,174 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: 20,
-        itemBuilder: (context, index) {
-          print('$count++');
+      // body : ListView.separated(
+      //
+      //   // reverse: true,
+      //   itemCount: 20,
+      //   // addAutomaticKeepAlives: false,
+      //   // cacheExtent: 10,
+      //   itemBuilder: (context, index) {
+      //     count++;
+      //     print('Count : $count');
+      //     // if(index % 2 == 0)
+      //     if(index%3 == 0 || index%4 == 0)
+      //     {
+      //       if(_lastMsgIsRecieved){
+      //         _topMarginofTile = 10;
+      //       }else{
+      //         _topMarginofTile = 2;
+      //       }
+      //       _lastMsgIsRecieved = false;
+      //       return SentMessageTile(themeColor2);
+      //     }
+      //     else{
+      //       if(_lastMsgIsRecieved){
+      //         _topMarginofTile = 2;
+      //       }else{
+      //         _topMarginofTile = 10;
+      //       }
+      //       _lastMsgIsRecieved = true;
+      //       return RecievedMessageTile(themeColor1);
+      //     }
+      //   },
+      //   separatorBuilder: (context, index) => SizedBox(height: 20,),
+      // ),
 
 
-          
-          // if(index % 2 == 0)
-          if(index%3 == 0 || index%4 == 0)
-          {
-            if(_lastMsgIsRecieved){
-              _topMarginofTile = 10;
-            }else{
-              _topMarginofTile = 2;
+      body: Padding(
+        padding: const EdgeInsets.only(bottom: 55),
+        child: ListView.builder(
+          // reverse: true,
+          itemCount: 20,
+          // addAutomaticKeepAlives: false,
+          // cacheExtent: 10,
+          itemBuilder: (context, index) {
+            count++;
+            print('Count : $count');
+
+            // if(index % 2 == 0)
+            if(index%3 == 0 || index%4 == 0)
+            {
+              if(_lastMsgIsRecieved){
+                _topMarginofTile = 10;
+                // return Column(
+                //   children: [
+                //     SizedBox(height: 10,),
+                //     SentMessageTile(themeColor2),
+                //   ],
+                // );
+              }else{
+                _topMarginofTile = 2;
+                // return Column(
+                //   children: [
+                //     SizedBox(height: 2,),
+                //     SentMessageTile(themeColor2),
+                //   ],
+                // );
+              }
+              _lastMsgIsRecieved = false;
+              return SentMessageTile(themeColor2);
             }
-            _lastMsgIsRecieved = false;
-            return SentMessageTile(themeColor2);
-          }
-          else{
-            if(_lastMsgIsRecieved){
-              _topMarginofTile = 2;
-            }else{
-              _topMarginofTile = 10;
+            else{
+              if(_lastMsgIsRecieved){
+                _topMarginofTile = 2;
+              }else{
+                _topMarginofTile = 10;
+              }
+              _lastMsgIsRecieved = true;
+              return RecievedMessageTile(themeColor1);
             }
-            _lastMsgIsRecieved = true;
-            return RecievedMessageTile(themeColor1);
-          }
-          // return (index % 3 == 0)
-          //     ? SentMessageTile(themeColor2)
-          //     : RecievedMessageTile(themeColor1);
-          
-          // return SentMessageTile(themeColor2);
-          // return RecievedMessageTile(themeColor1);
+            // return (index % 3 == 0)
+            //     ? SentMessageTile(themeColor2)
+            //     : RecievedMessageTile(themeColor1);
 
-        },
+            // return SentMessageTile(themeColor2);
+            // return RecievedMessageTile(themeColor1);
 
+          },
+
+        ),
       ),
-      bottomSheet: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Container(
-            // height: 50,
-            width: MediaQuery.of(context).size.width * 0.8,
-            margin: EdgeInsets.only(bottom: 5),
-            decoration: BoxDecoration(
-              color: appbarColor,
-              borderRadius: BorderRadius.circular(40),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.6),
-                  // spreadRadius: 0,
-                  blurRadius: 3,
-                  offset: Offset(4, 4),
-                )
-              ],
-            ),
-            child: TextField(
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(0),
-                border: const OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  // borderRadius: BorderRadius.circular(30),
-                ),
-                prefixIconColor: themeColor2,
-                suffixIconColor: themeColor2,
-                prefixIcon: GestureDetector(
-                  child: Icon(Icons.emoji_emotions_rounded),
-                  onTap: () {
-                    Fluttertoast.showToast(msg: 'Emoji Icon Pressed');
-                  },
-                ),
-                hintText: 'Messaage',
-                hintStyle: TextStyle(
-                  color: Colors.black.withOpacity(0.3),
-                  fontSize: 20,
-                ),
-                suffixIcon: GestureDetector(
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: SvgPicture.asset('assets/icons/attachment.svg'),
+      bottomSheet: Container(
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+              // height: 50,
+              width: MediaQuery.of(context).size.width * 0.8,
+              margin: EdgeInsets.only(bottom: 5),
+              decoration: BoxDecoration(
+                color: appbarColor,
+                borderRadius: BorderRadius.circular(40),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.6),
+                    // spreadRadius: 0,
+                    blurRadius: 3,
+                    offset: Offset(4, 4),
+                  )
+                ],
+              ),
+              child: TextField(
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(0),
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    // borderRadius: BorderRadius.circular(30),
                   ),
-                  // child: Icon(),
-                  onTap: () {
-                    Fluttertoast.showToast(msg: 'Attachment Clicked!');
-                  },
-                ),
-                suffixIconConstraints: BoxConstraints(
-                    // maxHeight: double.infinity,
-                    // maxWidth: double.infinity,
+                  prefixIconColor: themeColor2,
+                  suffixIconColor: themeColor2,
+                  prefixIcon: GestureDetector(
+                    child: Icon(Icons.emoji_emotions_rounded),
+                    onTap: () {
+                      Fluttertoast.showToast(msg: 'Emoji Icon Pressed');
+                    },
+                  ),
+                  hintText: 'Messaage',
+                  hintStyle: TextStyle(
+                    color: Colors.black.withOpacity(0.3),
+                    fontSize: 20,
+                  ),
+                  suffixIcon: GestureDetector(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: SvgPicture.asset('assets/icons/attachment.svg'),
                     ),
+                    // child: Icon(),
+                    onTap: () {
+                      Fluttertoast.showToast(msg: 'Attachment Clicked!');
+                    },
+                  ),
+                  suffixIconConstraints: BoxConstraints(
+                      // maxHeight: double.infinity,
+                      // maxWidth: double.infinity,
+                      ),
+                ),
+                style: TextStyle(
+                  fontSize: 20,
+                  // height: 0,
+                ),
               ),
-              style: TextStyle(
-                fontSize: 20,
-                // height: 0,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Fluttertoast.showToast(msg: 'Sent Button Clicked');
+              },
+              style: ElevatedButton.styleFrom(
+                shape: CircleBorder(),
+                padding: EdgeInsets.all(10),
+                foregroundColor: themeColor1,
+                backgroundColor: appbarColor,
+              ),
+              child: Icon(
+                Icons.send,
+                color: themeColor2, // Icon color
+                size: 30, // Icon size
               ),
             ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Fluttertoast.showToast(msg: 'Sent Button Clicked');
-            },
-            style: ElevatedButton.styleFrom(
-              shape: CircleBorder(),
-              padding: EdgeInsets.all(10),
-              foregroundColor: themeColor1,
-              backgroundColor: appbarColor,
-            ),
-            child: Icon(
-              Icons.send,
-              color: themeColor2, // Icon color
-              size: 30, // Icon size
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

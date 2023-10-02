@@ -19,9 +19,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
 
       theme: ThemeData(fontFamily: 'Itim', useMaterial3: true),
-      home: WelcomeScreen(),
+      // home: WelcomeScreen(),
       // home: HomeScreen(),
-      // home: ChatScreen(),
+      home: ChatScreen(),
     );
   }
 }

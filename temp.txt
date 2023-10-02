@@ -1,5 +1,8 @@
 temp todos:
-1. explore clipPath for chat Messages,
+Message Spacing on ChatScreen,
+Implement ViewModel,
+Search functionality on HomeScreen
+
 
 Queries: 
  i have a logo and a Welcome text, logo should be at exact centre of whole screen, and beneath it there should be welcome text
