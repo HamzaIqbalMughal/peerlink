@@ -161,48 +161,65 @@ class _ChatScreenState extends State<ChatScreen> {
       // ),
 
 
-      body: Padding(
-        padding: const EdgeInsets.only(bottom: 55),
+      body: Container(
+        color: Colors.white,
         child: ListView.builder(
+          padding: const EdgeInsets.only(bottom: 55,),
           // reverse: true,
           itemCount: 20,
           // addAutomaticKeepAlives: false,
           // cacheExtent: 10,
           itemBuilder: (context, index) {
             count++;
-            print('Count : $count');
+            print('Count : $count  ,  Index : $index');
 
             // if(index % 2 == 0)
             if(index%3 == 0 || index%4 == 0)
             {
               if(_lastMsgIsRecieved){
-                _topMarginofTile = 10;
-                // return Column(
-                //   children: [
-                //     SizedBox(height: 10,),
-                //     SentMessageTile(themeColor2),
-                //   ],
-                // );
+                // _topMarginofTile = 10;
+                _lastMsgIsRecieved = false;
+                return Column(
+                  children: [
+                    SizedBox(height: 10,),
+                    SentMessageTile(themeColor2),
+                  ],
+                );
               }else{
-                _topMarginofTile = 2;
-                // return Column(
-                //   children: [
-                //     SizedBox(height: 2,),
-                //     SentMessageTile(themeColor2),
-                //   ],
-                // );
+                // _topMarginofTile = 2;
+                _lastMsgIsRecieved = false;
+                return Column(
+                  children: [
+                    SizedBox(height: 2,),
+                    SentMessageTile(themeColor2),
+                  ],
+                );
               }
-              _lastMsgIsRecieved = false;
-              return SentMessageTile(themeColor2);
+              // _lastMsgIsRecieved = false;
+              // return SentMessageTile(themeColor2);
             }
             else{
               if(_lastMsgIsRecieved){
-                _topMarginofTile = 2;
+                // _topMarginofTile = 2;
+                _lastMsgIsRecieved = true;
+                return Column(
+                  children: [
+                    SizedBox(height: 2,),
+                    RecievedMessageTile(themeColor1),
+                  ],
+                );
               }else{
-                _topMarginofTile = 10;
+                // _topMarginofTile = 10;
+                _lastMsgIsRecieved = true;
+                return Column(
+                  children: [
+                    SizedBox(height: 10,),
+                    RecievedMessageTile(themeColor1),
+                  ],
+                );
               }
-              _lastMsgIsRecieved = true;
-              return RecievedMessageTile(themeColor1);
+              // _lastMsgIsRecieved = true;
+              // return RecievedMessageTile(themeColor1);
             }
             // return (index % 3 == 0)
             //     ? SentMessageTile(themeColor2)
@@ -324,10 +341,12 @@ class _ChatScreenState extends State<ChatScreen> {
             // margin: _lastMsgIsRecieved
             //     ? EdgeInsets.only(left: 80, right: 5, top: 10, bottom: 0)
             //     : EdgeInsets.only(left: 80, right: 5, top: 2, bottom: 0),
+
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
 
-            margin: EdgeInsets.only(left: 80, right: 5, top: _topMarginofTile, bottom: 0),
-            
+            // margin: EdgeInsets.only(left: 80, right: 5, top: _topMarginofTile, bottom: 0),
+            margin: EdgeInsets.only(left: 80, right: 5, top: 0, bottom: 0),
+
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               color: themeColor2,
@@ -369,7 +388,8 @@ class _ChatScreenState extends State<ChatScreen> {
             //     ? EdgeInsets.only(left: 5, right: 80, top: 2, bottom: 0)
             //     : EdgeInsets.only(left: 5, right: 80, top: 10, bottom: 0),
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            margin: EdgeInsets.only(left: 5, right: 80, top: _topMarginofTile, bottom: 0),
+            // margin: EdgeInsets.only(left: 5, right: 80, top: _topMarginofTile, bottom: 0),
+            margin: EdgeInsets.only(left: 5, right: 80, top: 0, bottom: 0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               color: themeColor1,
