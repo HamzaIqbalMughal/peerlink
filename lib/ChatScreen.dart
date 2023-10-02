@@ -164,7 +164,7 @@ class _ChatScreenState extends State<ChatScreen> {
       body: Container(
         color: Colors.white,
         child: ListView.builder(
-          padding: const EdgeInsets.only(bottom: 55,),
+          padding: const EdgeInsets.only(bottom: 60,),
           // reverse: true,
           itemCount: 20,
           // addAutomaticKeepAlives: false,
@@ -233,6 +233,7 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
       ),
       bottomSheet: Container(
+        // margin: EdgeInsets.only(top: 10),
         color: Colors.white,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -240,7 +241,7 @@ class _ChatScreenState extends State<ChatScreen> {
             Container(
               // height: 50,
               width: MediaQuery.of(context).size.width * 0.8,
-              margin: EdgeInsets.only(bottom: 5),
+              margin: EdgeInsets.only(bottom: 5, top: 5),
               decoration: BoxDecoration(
                 color: appbarColor,
                 borderRadius: BorderRadius.circular(40),
