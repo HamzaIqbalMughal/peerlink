@@ -7,6 +7,8 @@ import 'package:peerlink/HomeScreen.dart';
 class SignUpSignInScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _SignUpSignInScreen();
+
+  static const String screen_id = 'SignUpSignInScreen';
 }
 
 class _SignUpSignInScreen extends State<SignUpSignInScreen> {
@@ -45,12 +47,13 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
 
   void btnLogInPressed() {
     // Implement LogIn Functionality here
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context)=> HomeScreen(),
-        )
-    );
+    Navigator.pushNamed(context, HomeScreen.screen_id);
+    // Navigator.push(
+    //     context,
+    //     MaterialPageRoute(
+    //       builder: (context)=> HomeScreen(),
+    //     )
+    // );
     // Fluttertoast.showToast(msg: "LogIn Button Clicked!");
   }
 
@@ -265,11 +268,16 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                     decoration: InputDecoration(
                       // filled: true,
                       // fillColor: Colors.red,
-                      prefixIcon: Icon(Icons.person),
-                      prefixIconConstraints: const BoxConstraints(
-                        // minHeight: 0,
-                        maxHeight: 8,
+                      icon: Container(
+                        padding: EdgeInsets.only(top: 25),
+                        child: Icon(Icons.person,),
                       ),
+
+                      // prefixIcon: Icon(Icons.person),
+                      // prefixIconConstraints: const BoxConstraints(
+                      //   // minHeight: 0,
+                      //   maxHeight: 8,
+                      // ),
                       errorStyle: TextStyle(
                         fontSize: 10,
                       ),
@@ -301,13 +309,17 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                     decoration: InputDecoration(
                       // filled: true,
                       // fillColor: Colors.red,
-                      prefixIcon: Icon(
-                        Icons.password_sharp,
+                      icon: Container(
+                        padding: EdgeInsets.only(top: 25),
+                        child: Icon(Icons.password_sharp,),
                       ),
-                      prefixIconConstraints: const BoxConstraints(
-                        // minHeight: 0,
-                        maxHeight: 8,
-                      ),
+                      // prefixIcon: Icon(
+                      //   Icons.password_sharp,
+                      // ),
+                      // prefixIconConstraints: const BoxConstraints(
+                      //   // minHeight: 0,
+                      //   maxHeight: 8,
+                      // ),
                       errorStyle: TextStyle(
                         fontSize: 10,
                       ),
@@ -339,13 +351,17 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                     decoration: InputDecoration(
                       // filled: true,
                       // fillColor: Colors.red,
-                      prefixIcon: Icon(
-                        Icons.password_sharp,
+                      icon: Container(
+                        padding: EdgeInsets.only(top: 25),
+                        child: Icon(Icons.password_sharp,),
                       ),
-                      prefixIconConstraints: const BoxConstraints(
-                        // minHeight: 0,
-                        maxHeight: 8,
-                      ),
+                      // prefixIcon: Icon(
+                      //   Icons.password_sharp,
+                      // ),
+                      // prefixIconConstraints: const BoxConstraints(
+                      //   // minHeight: 0,
+                      //   maxHeight: 8,
+                      // ),
                       errorStyle: TextStyle(
                         fontSize: 10,
                       ),
@@ -546,11 +562,15 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                     decoration: InputDecoration(
                       // filled: true,
                       // fillColor: Colors.red,
-                      prefixIcon: Icon(Icons.person),
-                      prefixIconConstraints: const BoxConstraints(
-                        // minHeight: 0,
-                        maxHeight: 8,
+                      icon: Container(
+                        padding: EdgeInsets.only(top: 25),
+                        child: Icon(Icons.person,),
                       ),
+                      // prefixIcon: Icon(Icons.person),
+                      // prefixIconConstraints: const BoxConstraints(
+                      //   // minHeight: 0,
+                      //   maxHeight: 8,
+                      // ),
                       errorStyle: TextStyle(
                         fontSize: 10,
                       ),
@@ -582,13 +602,17 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                     decoration: InputDecoration(
                       // filled: true,
                       // fillColor: Colors.red,
-                      prefixIcon: Icon(
-                        Icons.password_sharp,
+                      icon: Container(
+                        padding: EdgeInsets.only(top: 25),
+                        child: Icon(Icons.password_sharp),
                       ),
-                      prefixIconConstraints: const BoxConstraints(
-                        // minHeight: 0,
-                        maxHeight: 8,
-                      ),
+                      // prefixIcon: Icon(
+                      //   Icons.password_sharp,
+                      // ),
+                      // prefixIconConstraints: const BoxConstraints(
+                      //   // minHeight: 0,
+                      //   maxHeight: 8,
+                      // ),
                       errorStyle: TextStyle(
                         fontSize: 10,
                       ),

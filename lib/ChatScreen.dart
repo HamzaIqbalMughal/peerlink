@@ -6,6 +6,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
 
+  static const String screen_id = 'ChatScreen';
+
   @override
   State<ChatScreen> createState() => _ChatScreenState();
 }

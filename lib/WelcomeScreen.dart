@@ -9,6 +9,8 @@ class WelcomeScreen extends StatefulWidget {
 
   @override
   State<WelcomeScreen> createState() => _WelcomeScreenState();
+
+  static const String screen_id = 'WelcomeScreen';
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
@@ -21,12 +23,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     Timer(
       Duration(seconds: 2),
       () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => SignUpSignInScreen(),
-          ),
-        );
+        Navigator.pushReplacementNamed(context, SignUpSignInScreen.screen_id);
+        // Navigator.pushReplacement(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => SignUpSignInScreen(),
+        //   ),
+        // );
       },
     );
   }

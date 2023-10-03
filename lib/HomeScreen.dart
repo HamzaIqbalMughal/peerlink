@@ -9,6 +9,8 @@ import 'package:peerlink/ChatScreen.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  static const String screen_id = 'HomeScreen';
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -139,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
                   ),
                   title: Text('Hamza'),
-                  subtitle: Text('kaha ho tum?'),
+                  subtitle: Text('kaha ho tum? '),
                   // trailing: Text('1:22pm'),
                   trailing: Column(
                     children: [
@@ -166,12 +168,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   // dense: true,
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context)=> ChatScreen(),
-                        )
-                    );
+                    Navigator.pushNamed(context, ChatScreen.screen_id);
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context)=> ChatScreen(),
+                    //     )
+                    // );
                   },
                 );
               },
