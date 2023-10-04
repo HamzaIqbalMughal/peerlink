@@ -18,6 +18,8 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
   late int _id;
   final _signUpFormKey = GlobalKey<FormState>();
   final _logInFormKey = GlobalKey<FormState>();
+  FocusNode _idTextFieldFocus = FocusNode();
+  FocusNode _passwordTextFieldFocus = FocusNode();
 
   @override
   void initState() {
