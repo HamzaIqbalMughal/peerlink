@@ -4,6 +4,7 @@ import 'package:badges/badges.dart' as badges;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:peerlink/ChatScreen.dart';
+import 'constants.dart';
 // import 'package:badges/badges.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,23 +17,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String themeColor1CodeHexa = "#fff1a443";
-  String themeColor2CodeHexa = "#ff2e4757";
-  String appbarColorCodeHexa = "#fff7d2a0";
-
-
   bool isChatTab = true;
 
   @override
   Widget build(BuildContext context) {
-    Color themeColor1 =
-        Color(int.parse(themeColor1CodeHexa.replaceAll('#', '0x')));
-    Color themeColor2 =
-        Color(int.parse(themeColor2CodeHexa.replaceAll('#', '0x')));
-    Color appbarColor =
-        Color(int.parse(appbarColorCodeHexa.replaceAll("#", "0x")));
-
-    void toggleFloatingButton(){
+    void toggleFloatingButton() {
       setState(() {
         isChatTab = !isChatTab;
       });
@@ -43,11 +32,18 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           backgroundColor: appbarColor,
-          child: isChatTab ?
-          Icon(Icons.chat_rounded,color: themeColor2,size: 40,) : Icon(Icons.groups,color: themeColor2,size: 40,),
-          onPressed: () {
-
-          },
+          child: isChatTab
+              ? Icon(
+                  Icons.chat_rounded,
+                  color: themeColor2,
+                  size: 40,
+                )
+              : Icon(
+                  Icons.groups,
+                  color: themeColor2,
+                  size: 40,
+                ),
+          onPressed: () {},
         ),
         appBar: AppBar(
           centerTitle: false,
@@ -106,14 +102,13 @@ class _HomeScreenState extends State<HomeScreen> {
             indicatorColor: themeColor1,
             indicatorWeight: 2,
             unselectedLabelColor: themeColor2,
-            onTap: (index){
-              if((index == 0 && !isChatTab) || (index == 1 && isChatTab)){
+            onTap: (index) {
+              if ((index == 0 && !isChatTab) || (index == 1 && isChatTab)) {
                 toggleFloatingButton();
-              }
-              else if(index == 0 && isChatTab){
-                Fluttertoast.showToast(msg: 'Already on Chat Screen $isChatTab');
-              }
-              else if(index == 1 && !isChatTab){
+              } else if (index == 0 && isChatTab) {
+                Fluttertoast.showToast(
+                    msg: 'Already on Chat Screen $isChatTab');
+              } else if (index == 1 && !isChatTab) {
                 Fluttertoast.showToast(msg: 'Already on Peer Groups Screen');
               }
               // Fluttertoast.showToast(msg: 'you tapped $index');
@@ -184,7 +179,8 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, index) {
                 return ListTile(
                   leading: CircleAvatar(
-                    backgroundImage: NetworkImage('https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+                    backgroundImage: NetworkImage(
+                        'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
                   ),
                   title: Text('CS Group'),
                   subtitle: Text('Hello Everyone'),
@@ -210,9 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
-                  onTap: (){
-
-                  },
+                  onTap: () {},
                 );
               },
             ),

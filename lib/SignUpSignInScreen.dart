@@ -3,23 +3,30 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/services.dart';
 import 'package:peerlink/HomeScreen.dart';
+import 'package:peerlink/SignUpCard.dart';
+import 'constants.dart';
 
 class SignUpSignInScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _SignUpSignInScreen();
+  State<StatefulWidget> createState() => SignUpSignInScreenState();
 
   static const String screen_id = 'SignUpSignInScreen';
 }
 
-class _SignUpSignInScreen extends State<SignUpSignInScreen> {
-  String themeColorCodeHexa = "#fff1a443";
+class SignUpSignInScreenState extends State<SignUpSignInScreen> {
+  // String themeColorCodeHexa = "#fff1a443";
 
   bool isLogIn = true;
   late int _id;
   final _signUpFormKey = GlobalKey<FormState>();
   final _logInFormKey = GlobalKey<FormState>();
-  FocusNode _idTextFieldFocus = FocusNode();
-  FocusNode _passwordTextFieldFocus = FocusNode();
+  // FocusNode _idTextFieldFocus = FocusNode();
+  // FocusNode _passwordTextFieldFocus = FocusNode();
+  Color themeColor = Color(
+    int.parse(
+      '#fff1a443'.replaceAll('#', '0x'),
+    ),
+  );
 
   @override
   void initState() {
@@ -47,6 +54,12 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
     });
   }
 
+  // void  toggleBetweenSignInAndSignUp() {
+  //   setState(() {
+  //     isLogIn = !isLogIn;
+  //   });
+  // }
+
   void btnLogInPressed() {
     // Implement LogIn Functionality here
     Navigator.pushNamed(context, HomeScreen.screen_id);
@@ -64,9 +77,8 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context)=> HomeScreen(),
-        )
-    );
+          builder: (context) => HomeScreen(),
+        ));
     // Fluttertoast.showToast(msg: "SignUp Button Clicked!");
   }
 
@@ -76,9 +88,10 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Color themeColor = Color(
-      int.parse(themeColorCodeHexa.replaceAll('#', '0x')),
-    );
+    // Color themeColor = Color(
+    //   int.parse(themeColorCodeHexa.replaceAll('#', '0x')),
+    // );
+    Function toggleCards = toggleBetweenSignInAndSignUp;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
@@ -148,7 +161,13 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
               right: 0,
               left: 0,
               // bottom: 200,
-              child: isLogIn ? logInCard(themeColor) : signUpCard(themeColor),
+              // child: isLogIn ? logInCard(themeColor) : signUpCard(themeColor),
+
+              child: isLogIn
+                  ? logInCard(themeColor1)
+                  : SignUpCard(
+                      signUpSignInScreenInstance: this,
+                    ),
             ),
           ],
         ),
@@ -272,7 +291,9 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                       // fillColor: Colors.red,
                       icon: Container(
                         padding: EdgeInsets.only(top: 25),
-                        child: Icon(Icons.person,),
+                        child: Icon(
+                          Icons.person,
+                        ),
                       ),
 
                       // prefixIcon: Icon(Icons.person),
@@ -313,7 +334,9 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                       // fillColor: Colors.red,
                       icon: Container(
                         padding: EdgeInsets.only(top: 25),
-                        child: Icon(Icons.password_sharp,),
+                        child: Icon(
+                          Icons.password_sharp,
+                        ),
                       ),
                       // prefixIcon: Icon(
                       //   Icons.password_sharp,
@@ -355,7 +378,9 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                       // fillColor: Colors.red,
                       icon: Container(
                         padding: EdgeInsets.only(top: 25),
-                        child: Icon(Icons.password_sharp,),
+                        child: Icon(
+                          Icons.password_sharp,
+                        ),
                       ),
                       // prefixIcon: Icon(
                       //   Icons.password_sharp,
@@ -401,8 +426,9 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
               child: GestureDetector(
                 onTap: () {
                   if (_signUpFormKey.currentState!.validate()) {
-                    // _formKey.currentState!.save();
-                    btnSignUpPressed();
+                    // _signUpFormKey.currentState!.save();
+                    // btnSignUpPressed();
+                    Fluttertoast.showToast(msg: "SignUp Pressed...");
                   }
                   // btnSignUpPressed();
                 },
@@ -566,7 +592,9 @@ class _SignUpSignInScreen extends State<SignUpSignInScreen> {
                       // fillColor: Colors.red,
                       icon: Container(
                         padding: EdgeInsets.only(top: 25),
-                        child: Icon(Icons.person,),
+                        child: Icon(
+                          Icons.person,
+                        ),
                       ),
                       // prefixIcon: Icon(Icons.person),
                       // prefixIconConstraints: const BoxConstraints(

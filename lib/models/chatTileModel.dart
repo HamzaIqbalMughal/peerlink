@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 
 class ChatTileModel {
   String name;
@@ -9,5 +10,4 @@ class ChatTileModel {
     required this.lastMessage,
     required this.profilePicturePath,
   });
-
 }
