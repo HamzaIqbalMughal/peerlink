@@ -4,8 +4,9 @@ import 'package:peerlink/SignUpSignInScreen.dart';
 class SignUpCard extends SignUpSignInScreen {
   // const SignUpCard({super.key});
 
+  // SignUpCard({})
 
-
+  // SignUpCard({Color themeColor,})
 
   @override
   State<SignUpCard> createState() => _SignUpCardState();

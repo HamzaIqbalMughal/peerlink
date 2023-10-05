@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -278,9 +279,19 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                   suffixIcon: GestureDetector(
                     child: Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: SvgPicture.asset('assets/icons/attachment.svg'),
+                      padding: const EdgeInsets.all(10),
+                      child: Transform.rotate(
+                        angle: -135 * (3.14159265359 / 180),
+                        child: Icon(
+                          Icons.attachment,
+                          size: 28,
+                        ),
+                      ),
                     ),
+                    // child: Padding(
+                    //   padding: const EdgeInsets.only(right: 10),
+                    //   child: SvgPicture.asset('assets/icons/attachment.svg'),
+                    // ),
                     // child: Icon(),
                     onTap: () {
                       Fluttertoast.showToast(msg: 'Attachment Clicked!');
