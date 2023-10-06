@@ -72,14 +72,10 @@ class SignUpSignInScreenState extends State<SignUpSignInScreen> {
     // Fluttertoast.showToast(msg: "LogIn Button Clicked!");
   }
 
-  void btnSignUpPressed() {
+  void signUp(String id, String password) {
     // Implement SignUp Functionality here
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomeScreen(),
-        ));
-    // Fluttertoast.showToast(msg: "SignUp Button Clicked!");
+    Fluttertoast.showToast(msg: "Id : $id ** password: $password");
+    Navigator.pushNamed(context, HomeScreen.screen_id);
   }
 
   void forgetPasswordPressed() {

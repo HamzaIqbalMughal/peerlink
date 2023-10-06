@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:peerlink/SignUpSignInScreen.dart';
 import 'constants.dart';
+import 'package:peerlink/components/index.dart';
+// import 'package:peerlink/components/TextFormFieldId.dart';
+// import 'package:peerlink/components/TextFormFieldPassword.dart';
+// import 'components/MyButton.dart';
 
 class SignUpCard extends StatefulWidget {
   // const SignUpCard({super.key});
@@ -23,7 +27,31 @@ class _SignUpCardState extends State<SignUpCard> {
   // SignUpSignInScreenState signUpSignInScreenInstance = widget.signUpSignInScreenInstance;
   final _signUpFormKey = GlobalKey<FormState>();
 
+  String id = '';
+  String password = '';
+  String confirmPassword = '';
+
   late SignUpSignInScreenState signUpSignInScreenStateInstance;
+
+  void getIdValueFromTextField(String id){
+    this.id = id;
+  }
+
+  void getPasswordValueFromTextField(String password){
+    this.password = password;
+  }
+
+  void getConfirmPasswordValueFromTextField(String confirmPassword){
+    this.confirmPassword = confirmPassword;
+  }
+
+  validatePassAndConfirmPass(){
+    if(password == confirmPassword){
+      signUpSignInScreenStateInstance.signUp(id, password);
+    }else{
+      Fluttertoast.showToast(msg: "Unmatched Password!");
+    }
+  }
 
   @override
   void initState() {
@@ -144,22 +172,20 @@ class _SignUpCardState extends State<SignUpCard> {
               right: 0,
               child: Column(
                 children: [
+                  TextFormFieldId(hinttext: "Enter Id", sendTextFieldValue: getIdValueFromTextField,),
+                  TextFormFieldPassword(hinttext: "Enter your password", sendTextFieldValue: getPasswordValueFromTextField,),
+                  TextFormFieldPassword(hinttext: "Confirm your password", sendTextFieldValue: getConfirmPasswordValueFromTextField,),
+                  // TextFormFieldId(hinttext: 'Enter your password', sendTextFieldValue: getPasswordValueFromTextField,),
+                  // TextFormFieldId(hinttext: 'Confirm your password', sendTextFieldValue: getConfirmPasswordValueFromTextField,),
+                  /*
                   TextFormField(
                     decoration: InputDecoration(
-                      // filled: true,
-                      // fillColor: Colors.red,
                       icon: Container(
                         padding: EdgeInsets.only(top: 25),
                         child: Icon(
                           Icons.person,
                         ),
                       ),
-
-                      // prefixIcon: Icon(Icons.person),
-                      // prefixIconConstraints: const BoxConstraints(
-                      //   // minHeight: 0,
-                      //   maxHeight: 8,
-                      // ),
                       errorStyle: TextStyle(
                         fontSize: 10,
                       ),
@@ -176,34 +202,24 @@ class _SignUpCardState extends State<SignUpCard> {
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please Enter Id';
-                        // ScaffoldMessenger.of(context).showSnackBar(
-                        //   SnackBar(content: Text('Please Enter your Id')),
-                        // );
                       }
                       return null;
                     },
                     onSaved: (value) {
                       // _id = int.parse(value!);
+                      // Fluttertoast.showToast(msg: "value : $value");
                     },
                   ),
+
                   TextFormField(
                     obscureText: true,
                     decoration: InputDecoration(
-                      // filled: true,
-                      // fillColor: Colors.red,
                       icon: Container(
                         padding: EdgeInsets.only(top: 25),
                         child: Icon(
                           Icons.password_sharp,
                         ),
                       ),
-                      // prefixIcon: Icon(
-                      //   Icons.password_sharp,
-                      // ),
-                      // prefixIconConstraints: const BoxConstraints(
-                      //   // minHeight: 0,
-                      //   maxHeight: 8,
-                      // ),
                       errorStyle: TextStyle(
                         fontSize: 10,
                       ),
@@ -220,9 +236,6 @@ class _SignUpCardState extends State<SignUpCard> {
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please Enter Password';
-                        // ScaffoldMessenger.of(context).showSnackBar(
-                        //   SnackBar(content: Text('Please Enter your Id')),
-                        // );
                       }
                       return null;
                     },
@@ -241,13 +254,6 @@ class _SignUpCardState extends State<SignUpCard> {
                           Icons.password_sharp,
                         ),
                       ),
-                      // prefixIcon: Icon(
-                      //   Icons.password_sharp,
-                      // ),
-                      // prefixIconConstraints: const BoxConstraints(
-                      //   // minHeight: 0,
-                      //   maxHeight: 8,
-                      // ),
                       errorStyle: TextStyle(
                         fontSize: 10,
                       ),
@@ -264,9 +270,6 @@ class _SignUpCardState extends State<SignUpCard> {
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please confirm your password';
-                        // ScaffoldMessenger.of(context).showSnackBar(
-                        //   SnackBar(content: Text('Please Enter your Id')),
-                        // );
                       }
                       return null;
                     },
@@ -274,6 +277,7 @@ class _SignUpCardState extends State<SignUpCard> {
                       // _id = int.parse(value!);
                     },
                   ),
+                  */
                 ],
               ),
             ),
@@ -285,26 +289,15 @@ class _SignUpCardState extends State<SignUpCard> {
               child: GestureDetector(
                 onTap: () {
                   if (_signUpFormKey.currentState!.validate()) {
-                    // _signUpFormKey.currentState!.save();
+                    _signUpFormKey.currentState!.save();
+                    Fluttertoast.showToast(msg: "Id : $id -- pass: $password -- conf Pass : $confirmPassword");
+                    validatePassAndConfirmPass();
                     // btnSignUpPressed();
+                    // signUpSignInScreenStateInstance.btnSignUpPressed(id,password);
                   }
                   // btnSignUpPressed();
                 },
-                child: Container(
-                  height: 35,
-                  decoration: BoxDecoration(
-                      color: themeColor1,
-                      borderRadius: BorderRadius.circular(25)),
-                  child: const Center(
-                    child: Text(
-                      'Sign Up',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                      ),
-                    ),
-                  ),
-                ),
+                child: MyButton(title: 'Sign Up', btnColor: themeColor1),
               ),
             ),
 
@@ -342,3 +335,4 @@ class _SignUpCardState extends State<SignUpCard> {
     );
   }
 }
+
