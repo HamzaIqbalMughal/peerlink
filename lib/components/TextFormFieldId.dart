@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:peerlink/constants.dart';
 
 class TextFormFieldId extends StatelessWidget {
   final String hinttext;
@@ -35,7 +36,7 @@ class TextFormFieldId extends StatelessWidget {
       ),
       validator: (value) {
         if (value!.isEmpty) {
-          return 'Please Enter Id';
+          return errorMessageEnterId;
         }
         return null;
       },

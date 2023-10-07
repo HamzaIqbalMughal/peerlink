@@ -1,57 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:peerlink/SignUpSignInScreen.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'constants.dart';
-import 'package:peerlink/components/index.dart';
-// import 'package:peerlink/components/TextFormFieldId.dart';
-// import 'package:peerlink/components/TextFormFieldPassword.dart';
-// import 'components/MyButton.dart';
+import 'components/index.dart';
 
-class SignUpCard extends StatefulWidget {
-  // const SignUpCard({super.key});
-  // Function toggleCard;
+class LogInCard extends StatefulWidget {
+  // const SignInCard({super.key});
+
   SignUpSignInScreenState signUpSignInScreenInstance;
 
-  // SignUpSignInScreen signUpSignInScreenInstance;
-  SignUpCard({
+  LogInCard({
     Key? key,
     required this.signUpSignInScreenInstance,
   }) : super(key: key);
 
   @override
-  State<SignUpCard> createState() => _SignUpCardState();
+  State<LogInCard> createState() => _LogInCardState();
 }
 
-class _SignUpCardState extends State<SignUpCard> {
-  // late final Function toggleCard = widget.toggleCard;
-  // SignUpSignInScreenState signUpSignInScreenInstance = widget.signUpSignInScreenInstance;
-  final _signUpFormKey = GlobalKey<FormState>();
-
-  String id = '';
-  String password = '';
-  String confirmPassword = '';
-
+class _LogInCardState extends State<LogInCard> {
   late SignUpSignInScreenState signUpSignInScreenStateInstance;
-
-  void getIdValueFromTextField(String id){
-    this.id = id;
-  }
-
-  void getPasswordValueFromTextField(String password){
-    this.password = password;
-  }
-
-  void getConfirmPasswordValueFromTextField(String confirmPassword){
-    this.confirmPassword = confirmPassword;
-  }
-
-  validatePassAndConfirmPass(){
-    if(password == confirmPassword){
-      signUpSignInScreenStateInstance.signUp(id, password);
-    }else{
-      Fluttertoast.showToast(msg: "Unmatched Password!");
-    }
-  }
 
   @override
   void initState() {
@@ -59,9 +27,20 @@ class _SignUpCardState extends State<SignUpCard> {
     signUpSignInScreenStateInstance = widget.signUpSignInScreenInstance;
   }
 
+  final _logInFormKey = GlobalKey<FormState>();
+  String id = '';
+  String password = '';
+
+  void getIdValueFromTextField(String id) {
+    this.id = id;
+  }
+
+  void getPasswordValueFromTextField(String password) {
+    this.password = password;
+  }
+
   @override
   Widget build(BuildContext context) {
-    // return
     return Container(
       padding: const EdgeInsets.only(
         left: 40,
@@ -71,7 +50,6 @@ class _SignUpCardState extends State<SignUpCard> {
       ),
       height: 450,
       width: MediaQuery.of(context).size.width * 0.82,
-      // width: 300,
       margin: const EdgeInsets.symmetric(horizontal: 30),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -81,14 +59,13 @@ class _SignUpCardState extends State<SignUpCard> {
             color: Colors.grey.withOpacity(0.6),
             spreadRadius: 0.5,
             blurRadius: 2,
-            offset: Offset(0, 5),
+            offset: const Offset(0, 5),
           ),
         ],
       ),
       child: Form(
-        key: _signUpFormKey,
+        key: _logInFormKey,
         child: Stack(
-          // crossAxisAlignment: CrossAxisAlignment.center,
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
@@ -104,7 +81,9 @@ class _SignUpCardState extends State<SignUpCard> {
                 height: 35,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border.all(color: themeColor1),
+                    border: Border.all(
+                      color: themeColor1,
+                    ),
                     borderRadius: BorderRadius.circular(30)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -114,22 +93,17 @@ class _SignUpCardState extends State<SignUpCard> {
                       flex: 1,
                       child: GestureDetector(
                         onTap: () {
-                          // toggleBetweenSignInAndSignUp();
-                          // toggleCard();
-                          signUpSignInScreenStateInstance
-                              .toggleBetweenSignInAndSignUp();
+                          Fluttertoast.showToast(msg: "Already on LogIn");
                         },
                         child: Container(
-                          // height: 30,
-                          // width: 110,
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: themeColor1,
                               borderRadius: BorderRadius.circular(30)),
-                          child: Center(
+                          child: const Center(
                             child: Text(
                               'Log In',
                               style: TextStyle(
-                                color: themeColor1,
+                                color: Colors.white,
                                 fontSize: 17,
                               ),
                             ),
@@ -141,19 +115,18 @@ class _SignUpCardState extends State<SignUpCard> {
                       flex: 1,
                       child: GestureDetector(
                         onTap: () {
-                          Fluttertoast.showToast(msg: "Already on SignUp");
+                          signUpSignInScreenStateInstance
+                              .toggleBetweenSignInAndSignUp();
                         },
                         child: Container(
-                          // height: 30,
-                          // width: 110,
                           decoration: BoxDecoration(
-                              color: themeColor1,
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(30)),
-                          child: const Center(
+                          child: Center(
                             child: Text(
                               'Sign Up',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: themeColor1,
                                 fontSize: 17,
                               ),
                             ),
@@ -172,20 +145,29 @@ class _SignUpCardState extends State<SignUpCard> {
               right: 0,
               child: Column(
                 children: [
-                  TextFormFieldId(hinttext: "Enter Id", sendTextFieldValue: getIdValueFromTextField,),
-                  TextFormFieldPassword(hinttext: "Enter your password", sendTextFieldValue: getPasswordValueFromTextField,),
-                  TextFormFieldPassword(hinttext: "Confirm your password", sendTextFieldValue: getConfirmPasswordValueFromTextField,),
-                  // TextFormFieldId(hinttext: 'Enter your password', sendTextFieldValue: getPasswordValueFromTextField,),
-                  // TextFormFieldId(hinttext: 'Confirm your password', sendTextFieldValue: getConfirmPasswordValueFromTextField,),
+                  TextFormFieldId(
+                      hinttext: hintTextEnterId,
+                      sendTextFieldValue: getIdValueFromTextField),
+                  TextFormFieldPassword(
+                      hinttext: hintTextEnterPassword,
+                      sendTextFieldValue: getPasswordValueFromTextField),
+
                   /*
                   TextFormField(
                     decoration: InputDecoration(
+                      // filled: true,
+                      // fillColor: Colors.red,
                       icon: Container(
                         padding: EdgeInsets.only(top: 25),
                         child: Icon(
                           Icons.person,
                         ),
                       ),
+                      // prefixIcon: Icon(Icons.person),
+                      // prefixIconConstraints: const BoxConstraints(
+                      //   // minHeight: 0,
+                      //   maxHeight: 8,
+                      // ),
                       errorStyle: TextStyle(
                         fontSize: 10,
                       ),
@@ -202,24 +184,32 @@ class _SignUpCardState extends State<SignUpCard> {
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please Enter Id';
+                        // ScaffoldMessenger.of(context).showSnackBar(
+                        //   SnackBar(content: Text('Please Enter your Id')),
+                        // );
                       }
                       return null;
                     },
                     onSaved: (value) {
-                      // _id = int.parse(value!);
-                      // Fluttertoast.showToast(msg: "value : $value");
+                      _id = int.parse(value!);
                     },
                   ),
-
                   TextFormField(
                     obscureText: true,
                     decoration: InputDecoration(
+                      // filled: true,
+                      // fillColor: Colors.red,
                       icon: Container(
                         padding: EdgeInsets.only(top: 25),
-                        child: Icon(
-                          Icons.password_sharp,
-                        ),
+                        child: Icon(Icons.password_sharp),
                       ),
+                      // prefixIcon: Icon(
+                      //   Icons.password_sharp,
+                      // ),
+                      // prefixIconConstraints: const BoxConstraints(
+                      //   // minHeight: 0,
+                      //   maxHeight: 8,
+                      // ),
                       errorStyle: TextStyle(
                         fontSize: 10,
                       ),
@@ -236,68 +226,55 @@ class _SignUpCardState extends State<SignUpCard> {
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please Enter Password';
+                        // ScaffoldMessenger.of(context).showSnackBar(
+                        //   SnackBar(content: Text('Please Enter your Id')),
+                        // );
                       }
                       return null;
                     },
                     onSaved: (value) {
-                      // _id = int.parse(value!);
-                    },
-                  ),
-                  TextFormField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      // filled: true,
-                      // fillColor: Colors.red,
-                      icon: Container(
-                        padding: EdgeInsets.only(top: 25),
-                        child: Icon(
-                          Icons.password_sharp,
-                        ),
-                      ),
-                      errorStyle: TextStyle(
-                        fontSize: 10,
-                      ),
-                      contentPadding: EdgeInsets.only(
-                        // bottom: 20,
-                        top: 20,
-                      ),
-                      hintText: 'Confirm your password',
-                      hintStyle: TextStyle(
-                        color: Colors.black.withOpacity(0.3),
-                        fontSize: 12,
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Please confirm your password';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      // _id = int.parse(value!);
+                      _id = int.parse(value!);
                     },
                   ),
                   */
+
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          signUpSignInScreenStateInstance
+                              .forgetPasswordPressed();
+                        },
+                        child: const Text(
+                          'Forget Password?',
+                          style: TextStyle(
+                            color: Colors.blue,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
-
             Positioned(
               top: 310,
               left: 0,
               right: 0,
               child: GestureDetector(
                 onTap: () {
-                  if (_signUpFormKey.currentState!.validate()) {
-                    _signUpFormKey.currentState!.save();
-                    Fluttertoast.showToast(msg: "Id : $id -- pass: $password -- conf Pass : $confirmPassword");
-                    validatePassAndConfirmPass();
-                    // btnSignUpPressed();
-                    // signUpSignInScreenStateInstance.btnSignUpPressed(id,password);
+                  if (_logInFormKey.currentState!.validate()) {
+                    _logInFormKey.currentState!.save();
+                    signUpSignInScreenStateInstance.logIn(id, password);
                   }
-                  // btnSignUpPressed();
+                  // btnLogInPressed();
                 },
-                child: MyButton(title: 'Sign Up', btnColor: themeColor1),
+                child: MyButton(title: "Log In", btnColor: themeColor1),
               ),
             ),
 
@@ -305,34 +282,34 @@ class _SignUpCardState extends State<SignUpCard> {
               top: 380,
               left: 0,
               right: 0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    "Already have an Account? ",
-                    style: TextStyle(color: Colors.black, fontSize: 12),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      // toggleCard();
-                      signUpSignInScreenStateInstance
-                          .toggleBetweenSignInAndSignUp();
-                    },
-                    child: const Text(
-                      'Log In',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 14,
-                      ),
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Don't have an account? ",
+                      style: TextStyle(color: Colors.black, fontSize: 12),
                     ),
-                  )
-                ],
+                    GestureDetector(
+                      onTap: () {
+                        signUpSignInScreenStateInstance
+                            .toggleBetweenSignInAndSignUp();
+                      },
+                      child: const Text(
+                        'Sign Up',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontSize: 14,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
-            ),
+            )
           ],
         ),
       ),
     );
   }
 }
-

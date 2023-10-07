@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-class TextFormFieldPassword extends StatelessWidget {
+import 'package:peerlink/constants.dart';
 
+class TextFormFieldPassword extends StatelessWidget {
   final String hinttext;
   final Function sendTextFieldValue;
   const TextFormFieldPassword({
@@ -15,15 +16,15 @@ class TextFormFieldPassword extends StatelessWidget {
       obscureText: true,
       decoration: InputDecoration(
         icon: Container(
-          padding: EdgeInsets.only(top: 25),
-          child: Icon(
+          padding: const EdgeInsets.only(top: 25),
+          child: const Icon(
             Icons.password_sharp,
           ),
         ),
-        errorStyle: TextStyle(
+        errorStyle: const TextStyle(
           fontSize: 10,
         ),
-        contentPadding: EdgeInsets.only(
+        contentPadding: const EdgeInsets.only(
           // bottom: 20,
           top: 20,
         ),
@@ -35,8 +36,9 @@ class TextFormFieldPassword extends StatelessWidget {
       ),
       validator: (value) {
         if (value!.isEmpty) {
-          return (hinttext == "Enter your password") ? 'Please Enter Password' : 'Confirm Your Password';
-          // return 'Please Enter Password';
+          return (hinttext == hintTextEnterPassword)
+              ? errorMsgEnterPass
+              : errorMsgConfirmPass;
         }
         return null;
       },

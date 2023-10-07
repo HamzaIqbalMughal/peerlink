@@ -7,3 +7,11 @@ const String appbarColorCodeHexa = "#fff7d2a0";
 Color themeColor1 = Color(int.parse(themeColor1CodeHexa.replaceAll('#', '0x')));
 Color themeColor2 = Color(int.parse(themeColor2CodeHexa.replaceAll('#', '0x')));
 Color appbarColor = Color(int.parse(appbarColorCodeHexa.replaceAll("#", "0x")));
+
+const String hintTextEnterId = "Enter your Id";
+const String hintTextEnterPassword = "Enter your password";
+const String hintTextConfirmPassword = "Confirm your password";
+
+const String errorMessageEnterId = "Please Enter Id";
+const String errorMsgEnterPass = "Please Enter Password";
+const String errorMsgConfirmPass = "Confirm Your Password";
