@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:peerlink/SignUpSignInScreen.dart';
-import 'constants.dart';
+import '../constants.dart';
 import 'package:peerlink/components/index.dart';
 // import 'package:peerlink/components/TextFormFieldId.dart';
 // import 'package:peerlink/components/TextFormFieldPassword.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:peerlink/SignUpSignInScreen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'constants.dart';
-import 'components/index.dart';
+import '../constants.dart';
+import 'index.dart';
 
 class LogInCard extends StatefulWidget {
   // const SignInCard({super.key});

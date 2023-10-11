@@ -142,11 +142,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Text(
                         '4:30 PM',
-                        style: GoogleFonts.getFont(
-                          'Inter',
+                        style: TextStyle(
+                          fontFamily: 'Inter',
                           fontSize: 8,
-                          // color: Colors.red,
                         ),
+                        // style: GoogleFonts.getFont(
+                        //   'Inter',
+                        //   fontSize: 8,
+                        //   // color: Colors.red,
+                        // ),
                       ),
                       badges.Badge(
                         badgeStyle: badges.BadgeStyle(
@@ -188,10 +192,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Text(
                         '4:30 PM',
-                        style: GoogleFonts.getFont(
-                          'Inter',
+                        style: TextStyle(
+                          fontFamily: 'Inter',
                           fontSize: 8,
                         ),
+                        // style: GoogleFonts.getFont(
+                        //   'Inter',
+                        //   fontSize: 8,
+                        // ),
                       ),
                       badges.Badge(
                         badgeStyle: badges.BadgeStyle(
