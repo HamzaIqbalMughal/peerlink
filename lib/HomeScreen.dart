@@ -22,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   bool isChatTab = true;
 
+
   late TabController _tabController;
 
   @override
@@ -32,7 +33,8 @@ class _HomeScreenState extends State<HomeScreen>
       length: 2,
       vsync: this,
     ); // error of passing 'this' is resolved by adding "SingleTickerProviderStateMixin" on _HomeScreenState class
-    _tabController.addListener(_handleTabChange);
+    // _tabController.addListener(_handleTabChange);
+    // print('debug : from init.......');
   }
 
   void toggleFloatingButton() {
@@ -40,13 +42,13 @@ class _HomeScreenState extends State<HomeScreen>
       isChatTab = !isChatTab;
     });
   }
-  _handleTabChange(){
-    if(_tabController.indexIsChanging){
-      toggleFloatingButton();
-      print('Index is : ');
-      print(_tabController.index);
-    }
-  }
+  // _handleTabChange(){
+  //   if(_tabController.indexIsChanging){
+  //     int a = _tabController.index;
+  //     print('debug : Index is : $a');
+  //     toggleFloatingButton();
+  //   }
+  // }
 
   @override
   void dispose() {
@@ -144,7 +146,8 @@ class _HomeScreenState extends State<HomeScreen>
             onTap: (index) {
               if ((index == 0 && !isChatTab) || (index == 1 && isChatTab)) {
                 toggleFloatingButton();
-              } else if (index == 0 && isChatTab) {
+              }
+              else if (index == 0 && isChatTab) {
                 Fluttertoast.showToast(
                     msg: 'Already on Chat Screen $isChatTab');
               } else if (index == 1 && !isChatTab) {
@@ -165,6 +168,7 @@ class _HomeScreenState extends State<HomeScreen>
           // backgroundColor: Color(0xEFA54180),
         ),
         body: TabBarView(
+          controller: _tabController,
           children: [
             ListView.builder(
               itemCount: 25,
