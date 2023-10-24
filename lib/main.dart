@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:peerlink/ChatScreen.dart';
+import 'package:peerlink/InstructorInfoScreen.dart';
 import 'package:peerlink/SignUpSignInScreen.dart';
 import 'package:peerlink/WelcomeScreen.dart';
 import 'package:peerlink/HomeScreen.dart';
@@ -22,12 +23,15 @@ class MyApp extends StatelessWidget {
       // home: HomeScreen(),
       // home: ChatScreen(),
 
-      initialRoute: WelcomeScreen.screen_id,
+      initialRoute: InstructorInfoScreen.screen_id,
+
+      // initialRoute: WelcomeScreen.screen_id,
       routes: {
         WelcomeScreen.screen_id: (context) => WelcomeScreen(),
         SignUpSignInScreen.screen_id: (context) => SignUpSignInScreen(),
         HomeScreen.screen_id: (context) => HomeScreen(),
         ChatScreen.screen_id: (context) => ChatScreen(),
+        InstructorInfoScreen.screen_id: (context) => InstructorInfoScreen(),
       },
     );
   }
