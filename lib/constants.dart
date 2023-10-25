@@ -15,3 +15,6 @@ const String hintTextConfirmPassword = "Confirm your password";
 const String errorMessageEnterId = "Please Enter Id";
 const String errorMsgEnterPass = "Please Enter Password";
 const String errorMsgConfirmPass = "Confirm Your Password";
+
+BoxShadow cardShadow = BoxShadow(color: Colors.grey.withOpacity(0.6), spreadRadius: 0.5, blurRadius: 2, offset: const Offset(0, 5));
+

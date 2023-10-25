@@ -23,9 +23,9 @@ class MyApp extends StatelessWidget {
       // home: HomeScreen(),
       // home: ChatScreen(),
 
-      initialRoute: InstructorInfoScreen.screen_id,
+      // initialRoute: InstructorInfoScreen.screen_id,
 
-      // initialRoute: WelcomeScreen.screen_id,
+      initialRoute: WelcomeScreen.screen_id,
       routes: {
         WelcomeScreen.screen_id: (context) => WelcomeScreen(),
         SignUpSignInScreen.screen_id: (context) => SignUpSignInScreen(),

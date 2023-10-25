@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:peerlink/InstructorInfoScreen.dart';
 import 'constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -47,11 +48,14 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
         leadingWidth: 70,
 
-        title: Text(
-          'Name',
-          style: TextStyle(
-            fontSize: 24,
-            color: themeColor2,
+        title: GestureDetector(
+          onTap: () => Navigator.pushNamed(context, InstructorInfoScreen.screen_id),
+          child: Text(
+            'Name',
+            style: TextStyle(
+              fontSize: 24,
+              color: themeColor2,
+            ),
           ),
         ),
         // leading: GestureDetector(

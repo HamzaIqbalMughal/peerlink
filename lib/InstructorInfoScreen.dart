@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:peerlink/constants.dart';
 
 class InstructorInfoScreen extends StatefulWidget {
@@ -20,33 +21,165 @@ class _InstructorInfoScreenState extends State<InstructorInfoScreen> {
             Size.fromHeight(MediaQuery.of(context).size.height * 0.3),
         child: CustomAppBar(),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Container(
-              height: 200,
-              width: MediaQuery.of(context).size.width * 1,
-              decoration: BoxDecoration(
-                color: appbarColor,
-                borderRadius: BorderRadius.circular(20),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            InstructorInfoCard(
+              id: '023-19-1234',
+              designation: 'Instructor',
+              department: 'Computer Science',
+            ),
+            ConsultationHoursCard(),
+            SizedBox(height: 30,),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ConsultationHoursCard extends StatelessWidget {
+  const ConsultationHoursCard({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 15),
+      child: Container(
+        padding: EdgeInsets.only(top: 15, left: 10, right: 10, bottom: 30),
+        width: MediaQuery.of(context).size.width * 1,
+        decoration: BoxDecoration(
+          color: appbarColor,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            cardShadow,
+          ],
+        ),
+        child: DefaultTextStyle(
+          style: TextStyle(
+            color: themeColor2,
+            fontSize: 24,
+            fontWeight: FontWeight.w400,
+            fontFamily: 'Itim',
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Text(
+                  'CONSULTANT HOURS',
+                  style: TextStyle(
+                    color: themeColor1,
+                  ),
+                ),
+              ),
+              ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: 3,
+                itemBuilder: (context, index) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text('9 to 10'),
+                      Text('office'),
+                      Icon(
+                        Icons.send_rounded,
+                        color: themeColor1,
+                      ),
+                    ],
+                  );
+                },
+              ),
+
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class InstructorInfoCard extends StatelessWidget {
+  final String id, designation, department;
+
+  const InstructorInfoCard(
+      {Key? key,
+      required this.id,
+      required this.designation,
+      required this.department});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 15),
+      child: Container(
+        padding: EdgeInsets.only(top: 15, left: 10, right: 10, bottom: 30),
+        // height: 200,
+        width: MediaQuery.of(context).size.width * 1,
+        decoration: BoxDecoration(
+          color: appbarColor,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            cardShadow,
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Text(
+                'INFORMATION',
+                style: TextStyle(
+                  color: themeColor1,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Container(
-              height: 200,
-              width: MediaQuery.of(context).size.width * 1,
-              decoration: BoxDecoration(
-                color: appbarColor,
-                borderRadius: BorderRadius.circular(20),
+            DefaultTextStyle(
+              style: TextStyle(
+                color: themeColor2,
+                fontSize: 24,
+                fontWeight: FontWeight.w400,
+                fontFamily: 'Itim',
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('ID: '),
+                      Text('Designation: '),
+                      Text('Department: '),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(id),
+                      Text(designation),
+                      Text(department),
+                    ],
+                  ),
+                ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -59,7 +192,12 @@ class CustomAppBar extends StatelessWidget {
       decoration: BoxDecoration(
         color: appbarColor,
         borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(20), bottomLeft: Radius.circular(20)),
+          bottomRight: Radius.circular(20),
+          bottomLeft: Radius.circular(20),
+        ),
+        boxShadow: [
+          cardShadow,
+        ],
       ),
       child: SafeArea(
         child: Row(
@@ -71,12 +209,10 @@ class CustomAppBar extends StatelessWidget {
                 Icons.arrow_back_ios_new_rounded,
                 color: themeColor2,
               ),
-              onPressed: () {
-                // Add your leading icon's functionality here
-              },
+              onPressed: () => Navigator.pop(context),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 5),
+              padding: const EdgeInsets.only(top: 10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -91,6 +227,7 @@ class CustomAppBar extends StatelessWidget {
                     style: TextStyle(
                       color: themeColor2,
                       fontSize: 28,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                 ],
