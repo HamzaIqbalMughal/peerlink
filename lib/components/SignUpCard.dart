@@ -173,7 +173,7 @@ class _SignUpCardState extends State<SignUpCard> {
               child: Column(
                 children: [
                   TextFormFieldId(
-                    hinttext: hintTextEnterId,
+                    hintText: hintTextEnterId,
                     sendTextFieldValue: getIdValueFromTextField,
                   ),
                   TextFormFieldPassword(

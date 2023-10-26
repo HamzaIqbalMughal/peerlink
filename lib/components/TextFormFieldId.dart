@@ -3,11 +3,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:peerlink/constants.dart';
 
 class TextFormFieldId extends StatelessWidget {
-  final String hinttext;
+  final String hintText;
   final Function sendTextFieldValue;
   const TextFormFieldId({
     super.key,
-    required this.hinttext,
+    required this.hintText,
     required this.sendTextFieldValue,
   });
 
@@ -28,7 +28,7 @@ class TextFormFieldId extends StatelessWidget {
           // bottom: 20,
           top: 20,
         ),
-        hintText: hinttext,
+        hintText: hintText,
         hintStyle: TextStyle(
           color: Colors.black.withOpacity(0.3),
           fontSize: 12,

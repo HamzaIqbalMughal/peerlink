@@ -12,8 +12,20 @@ class InstructorInfoScreen extends StatefulWidget {
 }
 
 class _InstructorInfoScreenState extends State<InstructorInfoScreen> {
+
+  List<ConsultationDetailsModel> consultationsList = [];
+
+
   @override
   Widget build(BuildContext context) {
+
+    // ConsultationDetailsModel consultations = ConsultationDetailsModel(time: '10:00 to 11.30', office: 'Room#203 AB1');
+    // consultationsList.add(consultations);
+
+    consultationsList.add(ConsultationDetailsModel(time: '10:00 to 11.30', office: 'Room#203 AB1'));
+    consultationsList.add(ConsultationDetailsModel(time: '2:00 to 3:00', office: 'Room#503 AB3'));
+    consultationsList.add(ConsultationDetailsModel(time: '4:00 to 5:00', office: 'Room#502 AB4'));
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
@@ -31,8 +43,11 @@ class _InstructorInfoScreenState extends State<InstructorInfoScreen> {
               designation: 'Instructor',
               department: 'Computer Science',
             ),
-            ConsultationHoursCard(),
-            SizedBox(height: 30,),
+            // ConsultationHoursCard(),
+            ConsultationHoursCard(consultationsList: consultationsList),
+            SizedBox(
+              height: 30,
+            ),
           ],
         ),
       ),
@@ -41,9 +56,13 @@ class _InstructorInfoScreenState extends State<InstructorInfoScreen> {
 }
 
 class ConsultationHoursCard extends StatelessWidget {
-  const ConsultationHoursCard({
-    super.key,
-  });
+  // const ConsultationHoursCard({
+  //   super.key,
+  // });
+
+  final List<ConsultationDetailsModel> consultationsList;
+
+  const ConsultationHoursCard({Key? key, required this.consultationsList});
 
   @override
   Widget build(BuildContext context) {
@@ -83,14 +102,15 @@ class ConsultationHoursCard extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
-                itemCount: 3,
+                // itemCount: 3,
+                itemCount: consultationsList.length,
                 itemBuilder: (context, index) {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('9 to 10'),
-                      Text('office'),
+                      Text(consultationsList[index].time),
+                      Text(consultationsList[index].office),
                       Icon(
                         Icons.send_rounded,
                         color: themeColor1,
@@ -99,7 +119,6 @@ class ConsultationHoursCard extends StatelessWidget {
                   );
                 },
               ),
-
             ],
           ),
         ),
@@ -258,4 +277,12 @@ class CustomAppBar extends StatelessWidget {
       ),
     );
   }
+}
+
+class ConsultationDetailsModel {
+  String time, office;
+  ConsultationDetailsModel({
+    required this.time,
+    required this.office,
+  });
 }

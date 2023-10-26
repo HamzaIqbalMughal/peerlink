@@ -17,3 +17,5 @@ Issues i came up with :
 
     The issue is just Resolved by adding following is ListView.
         physics: NeverScrollableScrollPhysics(),
+
+2.

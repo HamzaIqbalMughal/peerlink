@@ -146,7 +146,7 @@ class _LogInCardState extends State<LogInCard> {
               child: Column(
                 children: [
                   TextFormFieldId(
-                      hinttext: hintTextEnterId,
+                      hintText: hintTextEnterId,
                       sendTextFieldValue: getIdValueFromTextField),
                   TextFormFieldPassword(
                       hinttext: hintTextEnterPassword,
