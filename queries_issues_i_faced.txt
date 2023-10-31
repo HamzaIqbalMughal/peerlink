@@ -1,0 +1,21 @@
+Queries:
+ i have a logo and a Welcome text, logo should be at exact centre of whole screen, and beneath it there should be welcome text
+
+ 2.
+
+
+Issues i came up with :
+1.
+    on InstructorInfoScreen.dart ,
+    we first have a custome appbar, then we have a card InfoCard, then we have a ConsultationHourCard
+    Now consulationcard contains listView, that means its size is increasing or decreasing according to its content,
+    the whole body is inside a Column, which is containing InfoCard and ConsultationHourCard, and this columns is wraped in singleChildScrollView
+    *Now the issue when the consultationCard having many items, it is increasing size in vertical Axis,
+        when i scroll down to see its contents, and we reached at a point where only the constationCard's Content is visible,
+        now when i try to scrollup it is trying to scroll the listView, and i am unable to reach up,
+        as now SwipeUp event is catching by listView whereas i want to the SingleChildScrollView (applied on column) to catch the gesture and swipe up.
+
+    The issue is just Resolved by adding following is ListView.
+        physics: NeverScrollableScrollPhysics(),
+
+2.

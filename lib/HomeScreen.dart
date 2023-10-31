@@ -1,9 +1,12 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:peerlink/ChatScreen.dart';
+import 'components/ChatTile.dart';
+import 'constants.dart';
 // import 'package:badges/badges.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,38 +18,69 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  String themeColor1CodeHexa = "#fff1a443";
-  String themeColor2CodeHexa = "#ff2e4757";
-  String appbarColorCodeHexa = "#fff7d2a0";
-
-
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
   bool isChatTab = true;
+
+
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _tabController = TabController(
+      length: 2,
+      vsync: this,
+    ); // error of passing 'this' is resolved by adding "SingleTickerProviderStateMixin" on _HomeScreenState class
+    // _tabController.addListener(_handleTabChange);
+    // print('debug : from init.......');
+  }
+
+  void toggleFloatingButton() {
+    setState(() {
+      isChatTab = !isChatTab;
+    });
+  }
+  // _handleTabChange(){
+  //   if(_tabController.indexIsChanging){
+  //     int a = _tabController.index;
+  //     print('debug : Index is : $a');
+  //     toggleFloatingButton();
+  //   }
+  // }
+
+  @override
+  void dispose() {
+    _tabController.dispose(); // Don't forget to dispose the controller.
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    Color themeColor1 =
-        Color(int.parse(themeColor1CodeHexa.replaceAll('#', '0x')));
-    Color themeColor2 =
-        Color(int.parse(themeColor2CodeHexa.replaceAll('#', '0x')));
-    Color appbarColor =
-        Color(int.parse(appbarColorCodeHexa.replaceAll("#", "0x")));
-
-    void toggleFloatingButton(){
-      setState(() {
-        isChatTab = !isChatTab;
-      });
-    }
 
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           backgroundColor: appbarColor,
-          child: isChatTab ?
-          Icon(Icons.chat_rounded,color: themeColor2,size: 40,) : Icon(Icons.groups,color: themeColor2,size: 40,),
+          child: isChatTab
+              ? Icon(
+                  Icons.chat_rounded,
+                  color: themeColor2,
+                  size: 40,
+                )
+              : Icon(
+                  Icons.groups,
+                  color: themeColor2,
+                  size: 40,
+                ),
           onPressed: () {
-
+            if (isChatTab) {
+              Fluttertoast.showToast(msg: 'New Chat Pressed');
+            } else {
+              Fluttertoast.showToast(msg: 'New Group Pressed');
+            }
           },
         ),
         appBar: AppBar(
@@ -97,23 +131,26 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
 
           bottom: TabBar(
+            controller: _tabController,
+            indicatorSize: TabBarIndicatorSize.tab,
+            indicatorWeight: 2,
+            indicatorColor: themeColor1,
+            unselectedLabelColor: themeColor2,
             labelColor: themeColor2,
+            // isScrollable: true,
             labelStyle: TextStyle(
               fontSize: 20,
               fontFamily: 'Itim',
               fontWeight: FontWeight.w400,
             ),
-            indicatorColor: themeColor1,
-            indicatorWeight: 2,
-            unselectedLabelColor: themeColor2,
-            onTap: (index){
-              if((index == 0 && !isChatTab) || (index == 1 && isChatTab)){
+            onTap: (index) {
+              if ((index == 0 && !isChatTab) || (index == 1 && isChatTab)) {
                 toggleFloatingButton();
               }
-              else if(index == 0 && isChatTab){
-                Fluttertoast.showToast(msg: 'Already on Chat Screen $isChatTab');
-              }
-              else if(index == 1 && !isChatTab){
+              else if (index == 0 && isChatTab) {
+                Fluttertoast.showToast(
+                    msg: 'Already on Chat Screen $isChatTab');
+              } else if (index == 1 && !isChatTab) {
                 Fluttertoast.showToast(msg: 'Already on Peer Groups Screen');
               }
               // Fluttertoast.showToast(msg: 'you tapped $index');
@@ -131,92 +168,22 @@ class _HomeScreenState extends State<HomeScreen> {
           // backgroundColor: Color(0xEFA54180),
         ),
         body: TabBarView(
+          controller: _tabController,
           children: [
             ListView.builder(
               itemCount: 25,
               itemBuilder: (context, index) {
-                return ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
-                  ),
-                  title: Text('Hamza'),
-                  subtitle: Text('kaha ho tum? '),
-                  // trailing: Text('1:22pm'),
-                  trailing: Column(
-                    children: [
-                      Text(
-                        '4:30 PM',
-                        style: GoogleFonts.getFont(
-                          'Inter',
-                          fontSize: 8,
-                          // color: Colors.red,
-                        ),
-                      ),
-                      badges.Badge(
-                        badgeStyle: badges.BadgeStyle(
-                          badgeColor: themeColor1,
-                        ),
-                        badgeContent: Text(
-                          '2',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  // dense: true,
-                  onTap: () {
-                    Navigator.pushNamed(context, ChatScreen.screen_id);
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //       builder: (context)=> ChatScreen(),
-                    //     )
-                    // );
-                  },
-                );
+                
+                return ChatTile();
               },
             ),
             ListView.builder(
               itemCount: 25,
               itemBuilder: (context, index) {
-                return ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage('https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
-                  ),
-                  title: Text('CS Group'),
-                  subtitle: Text('Hello Everyone'),
-                  trailing: Column(
-                    children: [
-                      Text(
-                        '4:30 PM',
-                        style: GoogleFonts.getFont(
-                          'Inter',
-                          fontSize: 8,
-                        ),
-                      ),
-                      badges.Badge(
-                        badgeStyle: badges.BadgeStyle(
-                          badgeColor: themeColor1,
-                        ),
-                        badgeContent: Text(
-                          '2',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: (){
 
-                  },
-                );
+                return ChatTile();
               },
             ),
-            // Center(child: Text('Groups')),
           ],
         ),
       ),

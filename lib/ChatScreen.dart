@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:peerlink/InstructorInfoScreen.dart';
+import 'constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,21 +15,11 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  String themeColor1CodeHexa = "#fff1a443";
-  String themeColor2CodeHexa = "#ff2e4757";
-  String appbarColorCodeHexa = "#fff7d2a0";
   bool _lastMsgIsRecieved = true;
-  int count=0;
+  int count = 0;
   double _topMarginofTile = 0;
   @override
   Widget build(BuildContext context) {
-    Color themeColor1 =
-        Color(int.parse(themeColor1CodeHexa.replaceAll('#', '0x')));
-    Color themeColor2 =
-        Color(int.parse(themeColor2CodeHexa.replaceAll('#', '0x')));
-    Color appbarColor =
-        Color(int.parse(appbarColorCodeHexa.replaceAll("#", "0x")));
-
     print('Hello printing ...... $_lastMsgIsRecieved');
 
     return Scaffold(
@@ -57,11 +48,14 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
         leadingWidth: 70,
 
-        title: Text(
-          'Name',
-          style: TextStyle(
-            fontSize: 24,
-            color: themeColor2,
+        title: GestureDetector(
+          onTap: () => Navigator.pushNamed(context, InstructorInfoScreen.screen_id),
+          child: Text(
+            'Name',
+            style: TextStyle(
+              fontSize: 24,
+              color: themeColor2,
+            ),
           ),
         ),
         // leading: GestureDetector(
@@ -163,11 +157,12 @@ class _ChatScreenState extends State<ChatScreen> {
       //   separatorBuilder: (context, index) => SizedBox(height: 20,),
       // ),
 
-
       body: Container(
         color: Colors.white,
         child: ListView.builder(
-          padding: const EdgeInsets.only(bottom: 60,),
+          padding: const EdgeInsets.only(
+            bottom: 60,
+          ),
           // reverse: true,
           itemCount: 20,
           // addAutomaticKeepAlives: false,
@@ -177,46 +172,52 @@ class _ChatScreenState extends State<ChatScreen> {
             print('Count : $count  ,  Index : $index');
 
             // if(index % 2 == 0)
-            if(index%3 == 0 || index%4 == 0)
-            {
-              if(_lastMsgIsRecieved){
+            if (index % 3 == 0 || index % 4 == 0) {
+              if (_lastMsgIsRecieved) {
                 // _topMarginofTile = 10;
                 _lastMsgIsRecieved = false;
                 return Column(
                   children: [
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     SentMessageTile(themeColor2),
                   ],
                 );
-              }else{
+              } else {
                 // _topMarginofTile = 2;
                 _lastMsgIsRecieved = false;
                 return Column(
                   children: [
-                    SizedBox(height: 2,),
+                    SizedBox(
+                      height: 2,
+                    ),
                     SentMessageTile(themeColor2),
                   ],
                 );
               }
               // _lastMsgIsRecieved = false;
               // return SentMessageTile(themeColor2);
-            }
-            else{
-              if(_lastMsgIsRecieved){
+            } else {
+              if (_lastMsgIsRecieved) {
                 // _topMarginofTile = 2;
                 _lastMsgIsRecieved = true;
                 return Column(
                   children: [
-                    SizedBox(height: 2,),
+                    SizedBox(
+                      height: 2,
+                    ),
                     RecievedMessageTile(themeColor1),
                   ],
                 );
-              }else{
+              } else {
                 // _topMarginofTile = 10;
                 _lastMsgIsRecieved = true;
                 return Column(
                   children: [
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     RecievedMessageTile(themeColor1),
                   ],
                 );
@@ -230,9 +231,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
             // return SentMessageTile(themeColor2);
             // return RecievedMessageTile(themeColor1);
-
           },
-
         ),
       ),
       bottomSheet: Container(
